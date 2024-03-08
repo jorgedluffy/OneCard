@@ -1,8 +1,7 @@
-// server.js
-
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const mongoose = require('mongoose');
 
 const app = express();
 const server = http.createServer(app);
@@ -10,34 +9,37 @@ const io = socketIO(server);
 
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
+// Configuración de MongoDB
+mongoose.connect('tu_url_de_conexion_a_mongodb', { useNewUrlParser: true, useUnifiedTopology: true });
 
-const Jugador = require('./jugador'); // Asegúrate de tener una clase Jugador
+// Configuración de Express
+app.use(express.json());
 
+// Configuración de Socket.io
 let jugadoresConectados = [];
 
 io.on('connection', (socket) => {
   console.log('Nuevo jugador conectado');
 
-  const nuevoJugador = new Jugador(socket.id);
+  const nuevoJugador = { id: socket.id, nombre: `Jugador${jugadoresConectados.length + 1}` };
   jugadoresConectados.push(nuevoJugador);
 
   // Envía la lista de jugadores a todos los clientes
-  io.emit('jugadores', jugadoresConectados.map(j => j.id));
+  io.emit('jugadores', jugadoresConectados.map(j => ({ id: j.id, nombre: j.nombre })));
 
   socket.on('disconnect', () => {
     console.log('Jugador desconectado');
     // Elimina al jugador desconectado de la lista
     jugadoresConectados = jugadoresConectados.filter(j => j.id !== socket.id);
     // Envía la nueva lista de jugadores a todos los clientes
-    io.emit('jugadores', jugadoresConectados.map(j => j.id));
+    io.emit('jugadores', jugadoresConectados.map(j => ({ id: j.id, nombre: j.nombre })));
   });
 
-  // Agrega más lógica para gestionar las acciones del juego
+  // Puedes agregar más lógica para gestionar las acciones del juego aquí...
 });
 
 server.listen(PORT, () => {
   console.log(`Servidor en ejecución en http://localhost:${PORT}`);
 });
+
+// Aquí podrías agregar tus rutas de Express y otros configuraciones si es necesario

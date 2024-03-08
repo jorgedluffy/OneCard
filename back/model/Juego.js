@@ -1,3 +1,4 @@
+// Juego.js
 class Juego {
     constructor(jugador1, jugador2) {
       this.jugador1 = jugador1;
@@ -12,11 +13,5 @@ class Juego {
     // Otras funciones y lógica de juego aquí...
   }
   
-  // Ejemplo de uso
-  const jugador1 = new Jugador("Marina");
-  const jugador2 = new Jugador("Sombrero de Paja");
-  const juego = new Juego(jugador1, jugador2);
-  
-  
-  // Iniciar el juego y realizar acciones según las reglas específicas.
+  module.exports = Juego;
   

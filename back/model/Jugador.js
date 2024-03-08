@@ -1,11 +1,71 @@
+
+Carta = require('./Carta');
+const mongoose = require('mongoose');
+CartaController = require('./cartaController');
 class Jugador { 
     constructor(nombre) {
       this.nombre = nombre;
       this.vidas = 20;
-      this.cartasEnJuego = [];
-      this.cartasEnMano = [];
-      this.cartasEnDeck = [];
+      this.tablero = [];
+      this.mano = [];
+      this.deck = [];
+      this.campos = [];
+      this.descartes = [];
+      this.inicializarCartas();
     }
+    // Método para añadir una carta a la base de datos
+    async agregarCartaALaBD(nuevaCarta) {
+      try {
+        // Asegurarse de que la nueva carta sea una instancia de la clase Carta
+        if (!(nuevaCarta instanceof Carta)) {
+          throw new Error('El objeto proporcionado no es una instancia de Carta.');
+        }
+
+        // Guardar la nueva carta en la base de datos
+        const cartaGuardada = await CartaController.guardarCarta(nuevaCarta);
+        console.log(`Carta ${nuevaCarta.nombre} guardada en la base de datos.`);
+        return cartaGuardada;
+      } catch (error) {
+        console.error('Error al agregar carta a la base de datos:', error);
+        throw error;
+      }
+    }
+    async inicializarCartasDesdeBD() {
+        try {
+          // Recuperar cartas específicas para el jugador desde la base de datos
+          const cartasDesdeBD = await CartaController.obtenerCartasPorTripulacion(this.tipoTripulacion);
+    
+          // Asignar las cartas recuperadas al deck del jugador
+          this.deck = cartasDesdeBD;
+    
+          // También puedes realizar operaciones adicionales según sea necesario
+    
+        } catch (error) {
+          console.error('Error al obtener cartas desde la base de datos:', error);
+          throw error;
+        }
+    }
+    inicializarCartas() {
+      // Crear instancias de cartas según el tipo de tripulación
+      if (this.tipoTripulacion === 'Sombrero de Paja') {
+        this.inicializarCartasSombreroDePaja();
+      } else if (this.tipoTripulacion === 'Marina') {
+        this.inicializarCartasMarina();
+      }
+  
+      // Puedes agregar lógica para inicializar otros tipos de tripulaciones si es necesario
+    }
+  
+    inicializarCartasSombreroDePaja() {
+      // ... Lógica para inicializar las cartas de Sombrero de Paja
+    }
+  
+    inicializarCartasMarina() {
+      // ... Lógica para inicializar las cartas de la Marina
+    }
+
+
+    /*
     luffy = new Carta("Monkey D. Luffy", "Personaje", 10, 5, 8, "Gomu Gomu no Pistol", "Sombrero de Paja");
     zoro = new Carta("Roronoa Zoro", "Personaje", 8, 6, 7, "Santoryu: Oni Giri", "Sombrero de Paja");
     sanji = new Carta("Vinsmoke Sanji", "Personaje", 9, 4, 7, "Diable Jambe", "Sombrero de Paja");
@@ -45,6 +105,8 @@ class Jugador {
         , campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina];
     cartasMagicas = [cartaMagicaBufeante, cartaMagicaCurativa, cartaMagicaDefensiva, cartaMagicaOfensiva, cartaMagicaEscudo, cartaMagicaDobleAtaque];
     todasLasCartas = [...cartasSombreroDePaja, ...cartasMarina, ...cartasMagicas];
+    */
     
-  }
+}
   
+module.exports = Jugador;
