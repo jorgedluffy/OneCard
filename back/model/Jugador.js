@@ -13,6 +13,28 @@ class Jugador {
       this.descartes = [];
       this.inicializarCartas();
     }
+    faseCombate(jugadorOponente) {
+      console.log(`${this.nombre} ataca a ${jugadorOponente.nombre}!`);
+      for (const atacante of this.tablero) {
+        for (const defensor of jugadorOponente.tablero) {
+          // Simulación simple: atacante reduce la vida del defensor según su ataque
+          defensor.defensa -= atacante.ataque;
+          console.log(`${atacante.nombre} ataca a ${defensor.nombre}.`);
+        }
+      }
+    }
+    robarCarta() {
+      if (this.mazo.length > 0) {
+        const carta = this.mazo.pop();
+        this.mano.push(carta);
+        console.log(`${this.nombre} roba una carta: ${carta.nombre}`);
+      }
+    }
+  
+    jugarCartaAlTablero(carta) {
+      this.tablero.push(carta);
+      console.log(`${this.nombre} juega ${carta.nombre} al tablero.`);
+    }
     // Método para añadir una carta a la base de datos
     async agregarCartaALaBD(nuevaCarta) {
       try {

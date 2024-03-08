@@ -30,4 +30,8 @@ class Carta {
         // Simular una acción de defensa, podrías agregar lógica adicional aquí según las reglas del juego
         console.log(`${this.nombre} se defendió.`);
       }
+      aplicarHabilidadEspecial() {
+        // Implementa la lógica de la habilidad especial de la carta
+        console.log(`${this.nombre}: Se activa la habilidad especial - ${this.habilidadEspecial}`);
+      }
   }
