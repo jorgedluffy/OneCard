@@ -11,8 +11,10 @@ class Jugador {
       this.deck = [];
       this.campos = [];
       this.descartes = [];
+      inicializarCartasDesdeBD();
       this.inicializarCartas();
     }
+
     faseCombate(jugadorOponente) {
       console.log(`${this.nombre} ataca a ${jugadorOponente.nombre}!`);
       for (const atacante of this.tablero) {
@@ -23,6 +25,7 @@ class Jugador {
         }
       }
     }
+
     robarCarta() {
       if (this.mazo.length > 0) {
         const carta = this.mazo.pop();
@@ -35,6 +38,7 @@ class Jugador {
       this.tablero.push(carta);
       console.log(`${this.nombre} juega ${carta.nombre} al tablero.`);
     }
+
     // Método para añadir una carta a la base de datos
     async agregarCartaALaBD(nuevaCarta) {
       try {
@@ -42,7 +46,7 @@ class Jugador {
         if (!(nuevaCarta instanceof Carta)) {
           throw new Error('El objeto proporcionado no es una instancia de Carta.');
         }
-
+        
         // Guardar la nueva carta en la base de datos
         const cartaGuardada = await CartaController.guardarCarta(nuevaCarta);
         console.log(`Carta ${nuevaCarta.nombre} guardada en la base de datos.`);
