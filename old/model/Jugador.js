@@ -35,6 +35,7 @@ class Jugador {
     }
   
     jugarCartaAlTablero(carta) {
+      //this.mano.remove(carta)
       this.tablero.push(carta);
       console.log(`${this.nombre} juega ${carta.nombre} al tablero.`);
     }
