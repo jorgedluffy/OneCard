@@ -1,10 +1,25 @@
 
-Carta = require('./Carta');
-const mongoose = require('mongoose');
-CartaController = require('./cartaController');
-class Jugador {
-  constructor(nombre) {
+import Carta from './Carta.js'
+// import mongoose from 'mongoose'
+//import { obtenerCartasPorTripulacion } from './CartaController.js';
+import { TRIPULACIONES } from './constants.js'
+
+export default class Jugador {
+  id;
+  nombre;
+  tripulacion;
+  mana;
+  vidas;
+  tablero;
+  mano;
+  deck;
+  campos;
+  descartes;
+
+  constructor(id, nombre) {
+    this.id = id;
     this.nombre = nombre;
+    this.tripulacion = TRIPULACIONES.SIN_TRIPULACION;
     this.mana = 0;
     this.vidas = 20;
     this.tablero = [];
@@ -12,89 +27,92 @@ class Jugador {
     this.deck = [];
     this.campos = [];
     this.descartes = [];
-    inicializarCartasDesdeBD();
-    this.inicializarCartas();
   }
 
-  faseCombate(jugadorOponente) {
-    console.log(`${this.nombre} ataca a ${jugadorOponente.nombre}!`);
-    for (const atacante of this.tablero) {
-      for (const defensor of jugadorOponente.tablero) {
-        // Simulación simple: atacante reduce la vida del defensor según su ataque
-        defensor.defensa -= atacante.ataque;
-        console.log(`${atacante.nombre} ataca a ${defensor.nombre}.`);
-      }
-    }
-  }
+  // inicializarDatos() {
+  //   inicializarCartasDesdeBD();
+  //   this.inicializarCartas();
+  // }
 
-  setMana() {
-    this.mana = this.campos.length();
-  }
+  // faseCombate(jugadorOponente) {
+  //   console.log(`${this.nombre} ataca a ${jugadorOponente.nombre}!`);
+  //   for (const atacante of this.tablero) {
+  //     for (const defensor of jugadorOponente.tablero) {
+  //       // Simulación simple: atacante reduce la vida del defensor según su ataque
+  //       defensor.defensa -= atacante.ataque;
+  //       console.log(`${atacante.nombre} ataca a ${defensor.nombre}.`);
+  //     }
+  //   }
+  // }
 
-  robarCarta() {
-    if (this.mazo.length > 0) {
-      const carta = this.mazo.pop();
-      this.mano.push(carta);
-      console.log(`${this.nombre} roba una carta: ${carta.nombre}`);
-    }
-  }
+  // setMana() {
+  //   this.mana = this.campos.length();
+  // }
 
-  jugarCartaAlTablero(carta) {
-    //this.mano.remove(carta)
-    this.tablero.push(carta);
-    console.log(`${this.nombre} juega ${carta.nombre} al tablero.`);
-  }
+  // robarCarta() {
+  //   if (this.mazo.length > 0) {
+  //     const carta = this.mazo.pop();
+  //     this.mano.push(carta);
+  //     console.log(`${this.nombre} roba una carta: ${carta.nombre}`);
+  //   }
+  // }
 
-  // Método para añadir una carta a la base de datos
-  async agregarCartaALaBD(nuevaCarta) {
-    try {
-      // Asegurarse de que la nueva carta sea una instancia de la clase Carta
-      if (!(nuevaCarta instanceof Carta)) {
-        throw new Error('El objeto proporcionado no es una instancia de Carta.');
-      }
+  // jugarCartaAlTablero(carta) {
+  //   //this.mano.remove(carta)
+  //   this.tablero.push(carta);
+  //   console.log(`${this.nombre} juega ${carta.nombre} al tablero.`);
+  // }
 
-      // Guardar la nueva carta en la base de datos
-      const cartaGuardada = await CartaController.guardarCarta(nuevaCarta);
-      console.log(`Carta ${nuevaCarta.nombre} guardada en la base de datos.`);
-      return cartaGuardada;
-    } catch (error) {
-      console.error('Error al agregar carta a la base de datos:', error);
-      throw error;
-    }
-  }
-  async inicializarCartasDesdeBD() {
-    try {
-      // Recuperar cartas específicas para el jugador desde la base de datos
-      const cartasDesdeBD = await CartaController.obtenerCartasPorTripulacion(this.tipoTripulacion);
+  // // Método para añadir una carta a la base de datos
+  // async agregarCartaALaBD(nuevaCarta) {
+  //   try {
+  //     // Asegurarse de que la nueva carta sea una instancia de la clase Carta
+  //     if (!(nuevaCarta instanceof Carta)) {
+  //       throw new Error('El objeto proporcionado no es una instancia de Carta.');
+  //     }
 
-      // Asignar las cartas recuperadas al deck del jugador
-      this.deck = cartasDesdeBD;
+  //     // Guardar la nueva carta en la base de datos
+  //     const cartaGuardada = await CartaController.guardarCarta(nuevaCarta);
+  //     console.log(`Carta ${nuevaCarta.nombre} guardada en la base de datos.`);
+  //     return cartaGuardada;
+  //   } catch (error) {
+  //     console.error('Error al agregar carta a la base de datos:', error);
+  //     throw error;
+  //   }
+  // }
+  // async inicializarCartasDesdeBD() {
+  //   try {
+  //     // Recuperar cartas específicas para el jugador desde la base de datos
+  //     const cartasDesdeBD = await obtenerCartasPorTripulacion(this.tipoTripulacion);
 
-      // También puedes realizar operaciones adicionales según sea necesario
+  //     // Asignar las cartas recuperadas al deck del jugador
+  //     this.deck = cartasDesdeBD;
 
-    } catch (error) {
-      console.error('Error al obtener cartas desde la base de datos:', error);
-      throw error;
-    }
-  }
-  inicializarCartas() {
-    // Crear instancias de cartas según el tipo de tripulación
-    if (this.tipoTripulacion === 'Sombrero de Paja') {
-      this.inicializarCartasSombreroDePaja();
-    } else if (this.tipoTripulacion === 'Marina') {
-      this.inicializarCartasMarina();
-    }
+  //     // También puedes realizar operaciones adicionales según sea necesario
 
-    // Puedes agregar lógica para inicializar otros tipos de tripulaciones si es necesario
-  }
+  //   } catch (error) {
+  //     console.error('Error al obtener cartas desde la base de datos:', error);
+  //     throw error;
+  //   }
+  // }
+  // inicializarCartas() {
+  //   // Crear instancias de cartas según el tipo de tripulación
+  //   if (this.tipoTripulacion === 'Sombrero de Paja') {
+  //     this.inicializarCartasSombreroDePaja();
+  //   } else if (this.tipoTripulacion === 'Marina') {
+  //     this.inicializarCartasMarina();
+  //   }
 
-  inicializarCartasSombreroDePaja() {
-    // ... Lógica para inicializar las cartas de Sombrero de Paja
-  }
+  //   // Puedes agregar lógica para inicializar otros tipos de tripulaciones si es necesario
+  // }
 
-  inicializarCartasMarina() {
-    // ... Lógica para inicializar las cartas de la Marina
-  }
+  // inicializarCartasSombreroDePaja() {
+  //   // ... Lógica para inicializar las cartas de Sombrero de Paja
+  // }
+
+  // inicializarCartasMarina() {
+  //   // ... Lógica para inicializar las cartas de la Marina
+  // }
 
 
   /*
@@ -140,5 +158,3 @@ class Jugador {
   */
 
 }
-
-module.exports = Jugador;

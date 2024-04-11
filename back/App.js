@@ -1,5 +1,6 @@
 import express from 'express'
 import http from 'http'
+import Juego from './model/Juego.js';
 import { Server as SocketServer } from 'socket.io'
 import mongoose from 'mongoose'
 
@@ -12,54 +13,52 @@ const PORT = process.env.PORT || 3000;
 // Configuración de Express
 app.use(express.json());
 
+const juego = new Juego();
+
 // Configuración de Socket.io
-let jugadoresConectados = [];
-let partidaIniciada = false;
-
 io.on('connection', (socket) => {
-    console.log('Nuevo jugador conectado');
 
-    const nuevoJugador = { id: socket.id, nombre: `Jugador${jugadoresConectados.length + 1}` };
-    jugadoresConectados.push(nuevoJugador);
+    console.log('Nuevo intento de conexión');
+    if (!juego.getPartidaIniciada()) {
+        console.log('Nuevo jugador conectado');
+        juego.anyadirJugador(socket.id, `Jugador${juego.getJugadoresConectados().length + 1}`);
+        enviarJugadores();
 
-    // Envía la lista de jugadores a todos los clientes
-    io.emit('jugadores', jugadoresConectados.map(j => ({ id: j.id, nombre: j.nombre })));
 
-    socket.on('disconnect', () => {
-        console.log('Jugador desconectado');
-        // Elimina al jugador desconectado de la lista
-        jugadoresConectados = jugadoresConectados.filter(j => j.id !== socket.id);
-        // Envía la nueva lista de jugadores a todos los clientes
-        io.emit('jugadores', jugadoresConectados.map(j => ({ id: j.id, nombre: j.nombre })));
-
-        // Si la partida ya ha comenzado y un jugador se desconecta, podrías reiniciar el juego o hacer otras acciones.
-        if (partidaIniciada) {
-            reiniciarPartida();
-        }
-    });
-
-    // Comienza la partida cuando hay suficientes jugadores
-    if (jugadoresConectados.length == 2 && !partidaIniciada) {
+        // Comienza la partida cuando hay suficientes jugadores
+        juego.comprobarIniciarPartida();
         iniciarPartida();
     }
+    socket.on('disconnect', () => {
+        console.log('Jugador desconectado');
+        juego.eliminarJugador(socket.id)
+        reiniciarPartida()
+    });
 });
 
 function iniciarPartida() {
-    console.log('Partida iniciada');
-    partidaIniciada = true;
+    if (juego.getPartidaIniciada()) {
+        console.log('Partida iniciada');
 
-    // Aquí puedes agregar la lógica para configurar la partida, distribuir cartas, etc.
-    // Puedes emitir eventos a los clientes para notificarles que la partida ha comenzado.
-    io.emit('partidaIniciada', { mensaje: '¡La partida ha comenzado!' });
+        juego.iniciarPartida()
+
+        io.emit('partidaIniciada', { mensaje: '¡La partida ha comenzado!' });
+    }
 }
 
 function reiniciarPartida() {
-    console.log('Reiniciando partida');
-    partidaIniciada = false;
 
-    // Aquí puedes agregar la lógica para reiniciar la partida, reiniciar cartas, etc.
-    // Puedes emitir eventos a los clientes para notificarles que la partida se reinicia.
-    io.emit('partidaReiniciada', { mensaje: '¡La partida se ha reiniciado!' });
+    enviarJugadores()
+
+    if (juego.getPartidaIniciada()) {
+        juego.reiniciarPartida();
+        io.emit('partidaReiniciada', { mensaje: '¡La partida se ha reiniciado!' });
+    }
+}
+
+
+function enviarJugadores() {
+    io.emit('jugadores', juego.getJugadoresConectados().map(j => ({ id: j.id, nombre: j.nombre })));
 }
 
 server.listen(PORT, () => {
