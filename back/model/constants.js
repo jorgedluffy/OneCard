@@ -3,3 +3,5 @@ export const TRIPULACIONES = {
     SOMBRERO_PAJA: 1,
     MARINA: 2
 }
+
+export const CARTAS_INICIALES = 5;

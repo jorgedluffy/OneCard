@@ -1,10 +1,12 @@
-
+import { TRIPULACIONES } from '../constants.js';
 import Jugador from './Jugador.js';
-
 // Juego.js
 export default class Juego {
   jugadoresConectados;
   partidaIniciada;
+  jugadorActual;
+  tripulacion = 1;
+  io;
 
   constructor() {
     this.partidaIniciada = false;
@@ -19,10 +21,22 @@ export default class Juego {
   getPartidaIniciada() {
     return this.partidaIniciada;
   }
+
+  getJugadorActual() {
+    return this.jugadorActual;
+  }
   //---
 
+  setSocket(socket) {
+    this.io = socket;
+  }
   anyadirJugador(id, nombre) {
-    this.jugadoresConectados.push(new Jugador(id, nombre));
+    if (this.tripulacion == 1) {
+      this.jugadoresConectados.push(new Jugador(id, nombre, TRIPULACIONES.MARINA));
+      this.tripulacion++;
+    }
+    else
+      this.jugadoresConectados.push(new Jugador(id, nombre, TRIPULACIONES.SOMBRERO_PAJA));
   }
 
   eliminarJugador(id) {
@@ -30,18 +44,33 @@ export default class Juego {
   }
 
   comprobarIniciarPartida() {
-    this.partidaIniciada = this.jugadoresConectados.length == 2 && !this.partidaIniciada
+    this.partidaIniciada = this.jugadoresConectados.length == 2 && !this.partidaIniciada;
   }
 
   iniciarPartida() {
-    // Lógica principal del juego
+    this.jugadoresConectados.forEach(j => {
+      // inicializarDeck
+      j.inicializarCartas();
+      j.barajarCartas();
+      // jugadores roban cartas iniciales
+      j.robarCartasIniciales();
+    });
+
+    this.io.emit('fasesIniciadas', { mensaje: '¡Las fases han comenzado!' });
+    // inician fases
+    this.cambiarJugador()
+
   }
 
-  reiniciarPartida() {
-    console.log('Reiniciando partida');
-    this.partidaIniciada = false;
-
+  cambiarJugador() {
+    if (this.jugadorActual == 0) {
+      this.jugadorActual = 1;
+    } else {
+      this.jugadorActual = 0;
+    }
+    this.io.emit('turnoActual', this.jugadoresConectados[this.jugadorActual]);
   }
+
 
   // faseRobo() {
   //   this.turnoActual.robarCarta();
@@ -65,4 +94,9 @@ export default class Juego {
   //   console.log(`Turno cambiado a ${this.turnoActual.nombre}`);
   // }
 
+  reiniciarPartida() {
+    console.log('Reiniciando partida');
+    this.partidaIniciada = false;
+
+  }
 }

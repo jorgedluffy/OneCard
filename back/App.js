@@ -2,7 +2,6 @@ import express from 'express'
 import http from 'http'
 import Juego from './model/Juego.js';
 import { Server as SocketServer } from 'socket.io'
-import mongoose from 'mongoose'
 
 const app = express();
 const server = http.createServer(app);
@@ -17,7 +16,7 @@ const juego = new Juego();
 
 // Configuración de Socket.io
 io.on('connection', (socket) => {
-
+    juego.setSocket(io)
     console.log('Nuevo intento de conexión');
     if (!juego.getPartidaIniciada()) {
         console.log('Nuevo jugador conectado');
@@ -29,6 +28,10 @@ io.on('connection', (socket) => {
         juego.comprobarIniciarPartida();
         iniciarPartida();
     }
+    socket.on('robarCarta', () => {
+        juego.getJugadoresConectados()[juego.jugadorActual].robarCarta()
+        enviarJugadores()
+    })
     socket.on('disconnect', () => {
         console.log('Jugador desconectado');
         juego.eliminarJugador(socket.id)
@@ -36,13 +39,16 @@ io.on('connection', (socket) => {
     });
 });
 
+
 function iniciarPartida() {
+    console.log(juego.getPartidaIniciada())
     if (juego.getPartidaIniciada()) {
         console.log('Partida iniciada');
 
-        juego.iniciarPartida()
-
         io.emit('partidaIniciada', { mensaje: '¡La partida ha comenzado!' });
+
+        juego.iniciarPartida()
+        enviarJugadores()
     }
 }
 
@@ -58,7 +64,7 @@ function reiniciarPartida() {
 
 
 function enviarJugadores() {
-    io.emit('jugadores', juego.getJugadoresConectados().map(j => ({ id: j.id, nombre: j.nombre })));
+    io.emit('jugadores', juego.getJugadoresConectados());
 }
 
 server.listen(PORT, () => {
