@@ -1,5 +1,15 @@
 export default class Carta {
-  constructor(nombre, tipo, ataque, defensa, habilidad, energia, tripulacion) {
+  id;
+  nombre;
+  tipo; //TODO: cambiar a tipo constante en lugar de string
+  ataque;
+  defensa;
+  energia;
+  habilidad;
+  tripulacion;
+
+  constructor(id, nombre, tipo, ataque, defensa, habilidad, energia, tripulacion) {
+    this.id = id;
     this.nombre = nombre; // Nombre de la carta (por ejemplo, Luffy)
     this.tipo = tipo; // Tipo de la carta (por ejemplo, personaje, campo, magica)
     this.ataque = ataque; // Poder de la carta (puntos de ataque)

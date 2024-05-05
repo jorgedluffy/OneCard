@@ -11,9 +11,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +24,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +42,66 @@
 
 .read-the-docs {
   color: #888;
+}
+
+button {
+  background-color: #007bff;
+  /* Color de fondo azul */
+  color: #fff;
+  /* Color de texto blanco */
+  border: none;
+  /* Sin borde */
+  padding: 10px 20px;
+  /* Espaciado interno (arriba/abajo, izquierda/derecha) */
+  font-size: 16px;
+  /* Tamaño de fuente */
+  border-radius: 4px;
+  /* Bordes redondeados */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+}
+
+button:hover:enabled {
+  background-color: #fff;
+  color: #007bff;
+  border-style: solid;
+  border-color: #007bff;
+  /* Cambia el color de fondo al pasar el mouse sobre el botón */
+}
+
+button.carta_personaje {
+  background-color: #AF1C1C;
+  margin: 5px;
+}
+
+button.carta_personaje:hover:enabled {
+  background-color: #fff;
+  color: #AF1C1C;
+  border-color: #AF1C1C;
+}
+
+button.carta_campo {
+  background-color: #1CAF45;
+  margin: 5px;
+}
+
+button.carta_campo:hover:enabled {
+  background-color: #fff;
+  color: #1CAF45;
+  border-color: #1CAF45;
+}
+
+button.carta_magica {
+  background-color: #7E1CAF;
+  margin: 5px;
+}
+
+button.carta_magica:hover:enabled {
+  background-color: #fff;
+  color: #7E1CAF;
+  border-color: #7E1CAF;
+}
+
+button:disabled {
+  cursor: default
 }

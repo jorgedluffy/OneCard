@@ -13,3 +13,9 @@ export const FASES = {
     ATACAR: 3,
     ESPERA: 4,
 }
+
+export const TIPO_CARTA = {
+    CAMPO: "Campo",
+    PERSONAJE: "Personaje",
+    MAGICA: "Magica"
+}

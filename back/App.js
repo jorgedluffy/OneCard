@@ -16,56 +16,30 @@ const juego = new Juego();
 
 // Configuración de Socket.io
 io.on('connection', (socket) => {
-    juego.setSocket(io)
+    juego.setIo(io)
+    juego.setSocket(socket)
     console.log('Nuevo intento de conexión');
     if (!juego.getPartidaIniciada()) {
         console.log('Nuevo jugador conectado');
         juego.anyadirJugador(socket.id, `Jugador${juego.getJugadoresConectados().length + 1}`);
-        enviarJugadores();
 
 
         // Comienza la partida cuando hay suficientes jugadores
         juego.comprobarIniciarPartida();
-        iniciarPartida();
+        if (juego.getPartidaIniciada()) {
+            juego.iniciarPartida()
+        }
     }
-    socket.on('robarCarta', () => {
-        juego.getJugadoresConectados()[juego.jugadorActual].robarCarta()
-        enviarJugadores()
-    })
     socket.on('disconnect', () => {
+        //TODO: Reiniciar datos del juego o crear un nuevo objeto juego
         console.log('Jugador desconectado');
         juego.eliminarJugador(socket.id)
-        reiniciarPartida()
+        if (juego.getPartidaIniciada()) {
+            juego.reiniciarPartida();
+        }
     });
 });
 
-
-function iniciarPartida() {
-    console.log(juego.getPartidaIniciada())
-    if (juego.getPartidaIniciada()) {
-        console.log('Partida iniciada');
-
-        io.emit('partidaIniciada', { mensaje: '¡La partida ha comenzado!' });
-
-        juego.iniciarPartida()
-        enviarJugadores()
-    }
-}
-
-function reiniciarPartida() {
-
-    enviarJugadores()
-
-    if (juego.getPartidaIniciada()) {
-        juego.reiniciarPartida();
-        io.emit('partidaReiniciada', { mensaje: '¡La partida se ha reiniciado!' });
-    }
-}
-
-
-function enviarJugadores() {
-    io.emit('jugadores', juego.getJugadoresConectados());
-}
 
 server.listen(PORT, () => {
     console.log(`Servidor en ejecución en http://localhost:${PORT}`);
