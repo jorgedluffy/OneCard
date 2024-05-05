@@ -10,10 +10,12 @@ const socket = io("/")
 function App() {
   const [esTurnoActual, setEsTurnoActual] = useState(false)
   const [jugador, setJugador] = useState({} as any)
+  const [jugadorEnemigo, setJugadorEnemigo] = useState({} as any)
 
   useEffect(() => {
     socket.on('jugadores', jugadores => {
       setJugador(jugadores.filter((j: any) => j.id === socket.id)[0])
+      setJugadorEnemigo(jugadores.filter((j: any) => j.id !== socket.id)[0])
       console.log(jugador)
 
     })
@@ -32,6 +34,7 @@ function App() {
   })
 
   const robarCarta = () => socket.emit('robarCarta')
+  const pasarTurno = () => socket.emit('pasarTurno')
 
   const bajarCampo = (id: any) => {
     socket.emit('bajarCartaCampo', jugador.mano.find((carta: any) => carta.id == id))
@@ -39,6 +42,10 @@ function App() {
 
   const bajarCarta = (id: any) => {
     socket.emit('bajarCarta', jugador.mano.find((carta: any) => carta.id == id))
+  }
+
+  const atacar = (id: any) => {
+    socket.emit('atacar', jugador.tablero.find((carta: any) => carta.id == id))
   }
 
   const isDisabledCard = (tipo: string): boolean => {
@@ -65,6 +72,50 @@ function App() {
 
     })
   }
+  const mostrarTablero = () => {
+    console.log(jugador.tablero)
+
+    return jugador.tablero.map((carta: any) => {
+      console.log(carta.nombre)
+
+      if (carta.tipo === TIPO_CARTA.PERSONAJE) {
+        return <button disabled={jugador.faseActual !== FASES.ATACAR} className='carta_personaje' onClick={() => atacar(carta.id)}  > Carta: {carta.nombre}</button>
+      }
+      else {
+        return <button disabled={true} className='carta_magica'  > Carta: {carta.nombre}</button>
+      }
+
+    })
+  }
+
+  const mostrarTableroEnemigo = () => {
+    console.log(jugadorEnemigo.tablero)
+
+    return jugadorEnemigo.tablero.map((carta: any) => {
+      console.log(carta.nombre)
+
+      if (carta.tipo === TIPO_CARTA.PERSONAJE) {
+        return <button disabled={true} className='carta_personaje'> Carta: {carta.nombre}</button >
+      }
+      else {
+        return <button disabled={true} className='carta_magica'  > Carta: {carta.nombre}</button>
+      }
+
+    })
+  }
+
+  const mostrarCampo = () => {
+    console.log(jugador.campos)
+
+    return jugador.campos.map((carta: any) => {
+      console.log(carta.nombre)
+
+      return <button disabled={true} className='carta_campo' > Carta: {carta.nombre}</button>
+
+
+    })
+  }
+
 
   const getFaseActual = () => {
     if (jugador.faseActual === FASES.ROBAR) return <>Robo</>
@@ -78,21 +129,31 @@ function App() {
 
   return (
     <>
-      <p >
-        holiwiii
-      </p>
-
+      <div className='vidas'>Vidas: {jugador.vidas}</div>
       {/* {JSON.stringify(jugador)} */}
 
       <h1>Tu tripulación es:  {jugador.tripulacion == TRIPULACIONES.MARINA ? "MARINA" : "MUGIWARA"} </h1>
       <h1>Es el turno de:  {esTurnoActual ? "Es tu turno" : "Turno del contrincante"} </h1>
       <h1>Fase actual:  {getFaseActual()} </h1>
 
-      {esTurnoActual && jugador && jugador.faseActual == FASES.ROBAR &&
+      {esTurnoActual && jugador && jugador.faseActual !== FASES.ROBAR &&
+        <button onClick={pasarTurno}>PASAR TURNO</button>
+      }
+
+      {esTurnoActual && jugador && jugador.faseActual === FASES.ROBAR &&
         <button onClick={robarCarta}>ROBAR CARTA</button>
       }
       {
-        jugador && jugador.mano && <div>{mostrarMano()}</div>
+        jugador && jugador.mano && <div className='contenedor'><h2>MANO</h2>{mostrarMano()}</div>
+      }
+      {
+        jugador && jugador.tablero && <div className='contenedor'><h2>TABLERO</h2>{mostrarTablero()}</div>
+      }
+      {
+        jugador && jugador.campos && <div className='contenedor'><h2>CAMPOS: {jugador.campos.length} </h2>{mostrarCampo()}</div>
+      }
+      {
+        jugadorEnemigo && jugadorEnemigo.tablero && <div className='contenedor'><h2>TABLERO ENEMIGO</h2>{mostrarTableroEnemigo()}</div>
       }
     </>
   )

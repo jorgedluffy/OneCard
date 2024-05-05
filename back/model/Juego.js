@@ -115,6 +115,18 @@ export default class Juego {
         this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.BAJAR_CAMPO);
         this.enviarJugadores();
       })
+      this.socket.on('pasarTurno', () => {
+        const nuevaFase = this.getNuevaFase()
+        this.jugadoresConectados[this.jugadorActual].setFaseActual(nuevaFase);
+        if (nuevaFase === FASES.ESPERA) {
+          if (this.jugadoresConectados[this.jugadorActual].getEsFasePrimera())
+            this.jugadoresConectados[this.jugadorActual].finalizarPrimeraFase();
+          this.cambiarJugador()
+        }
+
+        this.enviarJugadores();
+      })
+
       this.socket.on('bajarCartaCampo', (carta) => {
         console.log('bajarCartaCampo')
         this.jugadoresConectados[this.jugadorActual].bajarCartaCampo(carta);
@@ -124,7 +136,7 @@ export default class Juego {
       this.socket.on('bajarCarta', (carta) => {
         console.log('bajarCarta')
         this.jugadoresConectados[this.jugadorActual].bajarCarta(carta);
-        if (this.jugadoresConectados[this.jugadorActual].esFasePrimera) {
+        if (this.jugadoresConectados[this.jugadorActual].getEsFasePrimera()) {
           this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
           this.jugadoresConectados[this.jugadorActual].finalizarPrimeraFase();
           this.cambiarJugador();
@@ -136,23 +148,33 @@ export default class Juego {
       })
       this.socket.on('atacar', (carta) => {
         console.log('atacar')
-        this.jugadoresConectados[this.jugadorActual].atacar(carta);
+        this.atacar(carta);
         this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
-        this.jugadoresConectados[this.jugadorActual].finalizarPrimeraFase();
         this.cambiarJugador();
         this.enviarJugadores();
       })
     }
   }
+  getNuevaFase() {
+    const faseActual = this.jugadoresConectados[this.jugadorActual].getFaseActual();
 
+    if (faseActual === FASES.BAJAR_CAMPO) return FASES.BAJAR_NO_CAMPO
+    if (faseActual === FASES.BAJAR_NO_CAMPO && !this.jugadoresConectados[this.jugadorActual].getEsFasePrimera()) return FASES.ATACAR
+
+    return FASES.ESPERA
+  }
   atacar(carta) {
     console.log("Atacando")
     //TODO: Quitar puntos de vida al contrincante (jugador no actual)
+    console.log(carta)
+
+    const jugadorContrincante = this.jugadorActual === 0 ? 1 : 0;
+    this.jugadoresConectados[jugadorContrincante].restarVidas(carta.ataque);
   }
 
 
   esPrimeraFaseTerminada() {
-    return !this.jugadoresConectados[0].esFasePrimera && !this.jugadoresConectados[1].esFasePrimera;
+    return !this.jugadoresConectados[0].getEsFasePrimera() && !this.jugadoresConectados[1].getEsFasePrimera();
   }
 
   enviarJugadores() {

@@ -28,20 +28,5 @@ export default class Carta {
     console.log(`Habilidad: ${this.habilidad}`);
     console.log(`Tripulación: ${this.tripulacion}`);
   }
-  atacar(cartaObjetivo) {
-    // Simular un ataque restando los puntos de ataque de la carta atacante a la defensa de la carta objetivo
-    const danioInfligido = this.ataque - cartaObjetivo.defensa;
-    cartaObjetivo.defensa -= danioInfligido;
 
-    console.log(`${this.nombre} atacó a ${cartaObjetivo.nombre} y le infligió ${danioInfligido} puntos de daño.`);
-  }
-
-  defender() {
-    // Simular una acción de defensa, podrías agregar lógica adicional aquí según las reglas del juego
-    console.log(`${this.nombre} se defendió.`);
-  }
-  aplicarHabilidadEspecial() {
-    // Implementa la lógica de la habilidad especial de la carta
-    console.log(`${this.nombre}: Se activa la habilidad especial - ${this.habilidadEspecial}`);
-  }
 }

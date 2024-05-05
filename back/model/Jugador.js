@@ -52,12 +52,22 @@ export default class Jugador {
   // setMana() {
   //   this.mana = this.campos.length();
   // }
+  restarVidas(vidasPerdida) {
+    this.vidas -= vidasPerdida;
+  }
 
+  sumarVidas(vidasExtra) {
+    this.vidas += vidasExtra;
+  }
   getFaseActual() {
     return this.faseActual;
   }
   setFaseActual(faseActual) {
     this.faseActual = faseActual;
+  }
+
+  getEsFasePrimera() {
+    return this.esFasePrimera
   }
 
   finalizarPrimeraFase() {
