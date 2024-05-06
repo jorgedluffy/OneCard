@@ -8,7 +8,7 @@ export default class Carta {
   habilidad;
   tripulacion;
 
-  constructor(id, nombre, tipo, ataque, defensa, habilidad, energia, tripulacion) {
+  constructor(id, nombre, tipo, ataque, defensa, energia, habilidad, tripulacion) {
     this.id = id;
     this.nombre = nombre; // Nombre de la carta (por ejemplo, Luffy)
     this.tipo = tipo; // Tipo de la carta (por ejemplo, personaje, campo, magica)

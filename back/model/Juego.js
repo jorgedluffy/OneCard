@@ -12,6 +12,7 @@ export default class Juego {
   constructor() {
     this.partidaIniciada = false;
     this.jugadoresConectados = [];
+    this.jugadorActual = 0;
   }
 
   // GETTERS Y SETTERS
@@ -40,17 +41,19 @@ export default class Juego {
 
   // METODOS CONTROL INICIO PARTIDA
   anyadirJugador(id, nombre) {
-    if (this.tripulacion == 1) {
-      this.jugadoresConectados.push(new Jugador(id, nombre, TRIPULACIONES.MARINA));
-      this.tripulacion++;
+    let tripulacion = TRIPULACIONES.SOMBRERO_PAJA;
+    if (this.jugadoresConectados.length > 0) {
+      const tripulacionContrincante = this.jugadoresConectados[0].getTripulacion();
+      if (tripulacionContrincante === 1) tripulacion = TRIPULACIONES.MARINA
     }
-    else
-      this.jugadoresConectados.push(new Jugador(id, nombre, TRIPULACIONES.SOMBRERO_PAJA));
+    this.jugadoresConectados.push(new Jugador(id, nombre, tripulacion));
+
     this.enviarJugadores()
   }
 
   eliminarJugador(id) {
     this.jugadoresConectados = this.jugadoresConectados.filter(j => j.id !== id);
+
     this.enviarJugadores()
   }
 
@@ -84,9 +87,10 @@ export default class Juego {
   reiniciarPartida() {
     console.log('Reiniciando partida');
     this.io.emit('partidaReiniciada', { mensaje: '¡La partida se ha reiniciado!' });
+    this.jugadoresConectados.forEach(j => j.resetearJugador())
     this.partidaIniciada = false;
+    this.jugadorActual = 0;
     this.enviarJugadores();
-    //TODO: Reiniciar datos del juego o crear un nuevo objeto juego
   }
 
   //--- 
@@ -151,7 +155,17 @@ export default class Juego {
         this.atacar(carta);
         this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
         this.cambiarJugador();
+        this.io.emit('comprobarFinPartida', this.jugadoresConectados)
         this.enviarJugadores();
+      })
+      this.socket.on('reiniciarPartida', () => {
+        console.log('reiniciarPartida')
+        this.reiniciarPartida();
+
+        this.comprobarIniciarPartida();
+        if (this.getPartidaIniciada()) {
+          this.iniciarPartida()
+        }
       })
     }
   }

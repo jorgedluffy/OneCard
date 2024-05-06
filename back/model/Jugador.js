@@ -2,7 +2,7 @@
 import Carta from './Carta.js'
 // import mongoose from 'mongoose'
 //import { obtenerCartasPorTripulacion } from './CartaController.js';
-import { TRIPULACIONES, CARTAS_INICIALES, FASES } from './constants.js';
+import { TRIPULACIONES, CARTAS_INICIALES, FASES, TIPO_CARTA } from './constants.js';
 
 export default class Jugador {
   id;
@@ -52,6 +52,11 @@ export default class Jugador {
   // setMana() {
   //   this.mana = this.campos.length();
   // }
+
+  getTripulacion() {
+    return this.tripulacion;
+  }
+
   restarVidas(vidasPerdida) {
     this.vidas -= vidasPerdida;
   }
@@ -158,14 +163,14 @@ export default class Jugador {
 
   //TODO: Implementar obtención de cartas desde BBDD
   inicializarCartasSombreroDePaja() {
-    const luffy = new Carta(0, "Monkey D. Luffy", "Personaje", 10, 5, 8, "Gomu Gomu no Pistol", "Sombrero de Paja");
-    const zoro = new Carta(1, "Roronoa Zoro", "Personaje", 8, 6, 7, "Santoryu: Oni Giri", "Sombrero de Paja");
-    const sanji = new Carta(2, "Vinsmoke Sanji", "Personaje", 9, 4, 7, "Diable Jambe", "Sombrero de Paja");
-    const nami = new Carta(3, "Nami", "Personaje", 6, 3, 5, "Clima Tact", "Sombrero de Paja");
-    const usopp = new Carta(4, "Usopp", "Personaje", 7, 3, 6, "Kabuto", "Sombrero de Paja");
-    const robin = new Carta(5, "Nico Robin", "Personaje", 5, 2, 4, "Flower-Flower Fruit", "Sombrero de Paja");
-    const chopper = new Carta(6, "Tony Tony Chopper", "Personaje", 6, 4, 5, "Monster Point", "Sombrero de Paja");
-    const franky = new Carta(7, "Franky", "Personaje", 8, 7, 6, "Coup de Vent", "Sombrero de Paja");
+    const luffy = new Carta(0, "Monkey D. Luffy", "Personaje", 10, 5, 3, "Gomu Gomu no Pistol", "Sombrero de Paja");
+    const zoro = new Carta(1, "Roronoa Zoro", "Personaje", 8, 6, 2, "Santoryu: Oni Giri", "Sombrero de Paja");
+    const sanji = new Carta(2, "Vinsmoke Sanji", "Personaje", 9, 4, 2, "Diable Jambe", "Sombrero de Paja");
+    const nami = new Carta(3, "Nami", "Personaje", 6, 3, 4, "Clima Tact", "Sombrero de Paja");
+    const usopp = new Carta(4, "Usopp", "Personaje", 7, 3, 1, "Kabuto", "Sombrero de Paja");
+    const robin = new Carta(5, "Nico Robin", "Personaje", 5, 2, 5, "Flower-Flower Fruit", "Sombrero de Paja");
+    const chopper = new Carta(6, "Tony Tony Chopper", "Personaje", 6, 4, 2, "Monster Point", "Sombrero de Paja");
+    const franky = new Carta(7, "Franky", "Personaje", 8, 7, 3, "Coup de Vent", "Sombrero de Paja");
 
     const campoMugiwara = new Carta(14, "Campo Sombrero de Paja", "Campo", 0, 0, 0, "Aumenta la energía de los Sombrero de Paja en 1", "Sombrero de Paja");
 
@@ -179,14 +184,14 @@ export default class Jugador {
 
   //TODO: Implementar obtención de cartas desde BBDD
   inicializarCartasMarina() {
-    const akainu = new Carta(15, "Almirante Akainu", "Personaje", 12, 8, 10, "Magu Magu no Mi", "Marina");
-    const kizaru = new Carta(16, "Almirante Kizaru", "Personaje", 11, 7, 9, "Pika Pika no Mi", "Marina");
-    const smoker = new Carta(17, "Smoker", "Personaje", 10, 6, 8, "Moku Moku no Mi", "Marina");
-    const kuzan = new Carta(18, "Almirante Kuzan", "Personaje", 11, 7, 9, "Hie Hie no Mi", "Marina");
-    const fujitora = new Carta(19, "Almirante Fujitora", "Personaje", 11, 8, 10, "Zushi Zushi no Mi", "Marina");
-    const doflamingo = new Carta(20, "Donquixote Doflamingo", "Personaje", 10, 7, 9, "Ito Ito no Mi", "Marina");
-    const aokiji = new Carta(21, "Almirante Aokiji", "Personaje", 10, 7, 9, "Hie Hie no Mi", "Marina");
-    const garp = new Carta(22, "Almirante Garp", "Personaje", 11, 8, 10, "Haki", "Marina");
+    const akainu = new Carta(15, "Almirante Akainu", "Personaje", 12, 8, 1, "Magu Magu no Mi", "Marina");
+    const kizaru = new Carta(16, "Almirante Kizaru", "Personaje", 11, 7, 3, "Pika Pika no Mi", "Marina");
+    const smoker = new Carta(17, "Smoker", "Personaje", 10, 6, 2, "Moku Moku no Mi", "Marina");
+    const kuzan = new Carta(18, "Almirante Kuzan", "Personaje", 11, 7, 3, "Hie Hie no Mi", "Marina");
+    const fujitora = new Carta(19, "Almirante Fujitora", "Personaje", 11, 8, 2, "Zushi Zushi no Mi", "Marina");
+    const doflamingo = new Carta(20, "Donquixote Doflamingo", "Personaje", 10, 7, 2, "Ito Ito no Mi", "Marina");
+    const aokiji = new Carta(21, "Almirante Aokiji", "Personaje", 10, 7, 1, "Hie Hie no Mi", "Marina");
+    const garp = new Carta(22, "Almirante Garp", "Personaje", 11, 8, 3, "Haki", "Marina");
     const campoMarina = new Carta(26, "Campo Marina", "Campo", 0, 0, 0, "Aumenta la energía de los personajes de la Marina en 1", "Marina");
 
     this.deck = [akainu, kizaru, smoker, kuzan, fujitora, doflamingo, aokiji, garp, campoMarina, campoMarina, campoMarina,
@@ -210,6 +215,24 @@ export default class Jugador {
   bajarCarta(carta) {
     console.log("Bajando carta ")
     this.mano = this.mano.filter(c => c.id !== carta.id)
-    this.tablero.push(carta)
+    if (carta.tipo === TIPO_CARTA.PERSONAJE)
+      this.tablero.push(carta)
+
+    if (carta.tipo === TIPO_CARTA.MAGICA) {
+      // TODO: Ejecutar la habilidad de la carta
+      this.descartes.push(carta)
+    }
+  }
+
+  resetearJugador() {
+    this.faseActual = FASES.ESPERA;
+    this.esFasePrimera = true;
+    this.mana = 0;
+    this.vidas = 20;
+    this.tablero = [];
+    this.mano = [];
+    this.deck = [];
+    this.campos = [];
+    this.descartes = [];
   }
 }
