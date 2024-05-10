@@ -17,15 +17,15 @@ interface ICardProps {
 export default function GameCard(props: ICardProps) {
   return (
     <>
-      <button className={props.disabled ? 'no-button cursor-defaul' : 'no-button cursor-pointer'} disabled={props.disabled}>
-        <Card sx={{ width: 250 }} className='game-card' onClick={() => props.onClick()}>
+      <button className={props.disabled ? `no-button ${props.tipo} cursor-default` : `no-button ${props.tipo} cursor-pointer`} disabled={props.disabled}>
+        <Card sx={{ width: 250, height: 320 }} className='game-card' onClick={() => props.onClick()}>
           <CardMedia
             component="img"
             alt={props.nombre}
             height="140"
             image={`./src/assets/cards/${props.id}.png`}
           />
-          <CardContent>
+          <CardContent className='content-carta'>
             <Typography gutterBottom variant="h5" component="div" textAlign="center">
               {props.nombre}
             </Typography>
@@ -37,6 +37,11 @@ export default function GameCard(props: ICardProps) {
             <div className='puntuacion-carta ataque'>
               <span>
                 {props.ataque}
+              </span>
+            </div>
+            <div className='puntuacion-carta energia'>
+              <span>
+                {props.energia}
               </span>
             </div>
             <div className='puntuacion-carta defensa'>

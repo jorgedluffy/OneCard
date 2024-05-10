@@ -1,3 +1,18 @@
+.game-card {
+  margin: 10px;
+  border: solid 1px #E5DDDB;
+  border-radius: 4px;
+  box-shadow: 0px 1px 5px -3px;
+}
+
+.content-carta {
+  height: 85px;
+}
+
+.footer-carta {
+  justify-content: space-between;
+}
+
 .puntuacion-carta {
   width: 30px;
   height: 40px;
@@ -13,17 +28,11 @@
 }
 
 .defensa {
+  background: #7a3ca7;
+}
+
+.energia {
   background: #3D952A;
-}
-
-.footer-carta {
-  justify-content: space-between;
-}
-
-.game-card {
-  border: solid 1px #E5DDDB;
-  border-radius: 4px;
-  box-shadow: 0px 1px 5px -3px;
 }
 
 .no-button {
@@ -38,4 +47,69 @@
 
 .cursor-default {
   cursor: default;
+}
+
+
+
+
+button {
+  background-color: #007bff;
+  /* Color de fondo azul */
+  color: #fff;
+  /* Color de texto blanco */
+  border: none;
+  /* Sin borde */
+  padding: 10px 20px;
+  /* Espaciado interno (arriba/abajo, izquierda/derecha) */
+  font-size: 16px;
+  /* Tamaño de fuente */
+  border-radius: 4px;
+  /* Bordes redondeados */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+}
+
+button:hover:enabled {
+  background-color: #fff;
+  color: #007bff;
+  border-style: solid;
+  border-color: #007bff;
+  /* Cambia el color de fondo al pasar el mouse sobre el botón */
+}
+
+button.carta_personaje {
+  background-color: #AF1C1C;
+  margin: 5px;
+}
+
+button.carta_personaje:hover:enabled {
+  background-color: #fff;
+  color: #AF1C1C;
+  border-color: #AF1C1C;
+}
+
+button.carta_campo {
+  background-color: #1CAF45;
+  margin: 5px;
+}
+
+button.carta_campo:hover:enabled {
+  background-color: #fff;
+  color: #1CAF45;
+  border-color: #1CAF45;
+}
+
+button.carta_magica {
+  background-color: #7E1CAF;
+  margin: 5px;
+}
+
+button.carta_magica:hover:enabled {
+  background-color: #fff;
+  color: #7E1CAF;
+  border-color: #7E1CAF;
+}
+
+button:disabled {
+  cursor: default
 }

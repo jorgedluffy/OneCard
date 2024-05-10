@@ -172,7 +172,7 @@ export default class Jugador {
     const chopper = new Carta(6, "Tony Tony Chopper", "Personaje", 6, 4, 2, "Monster Point", "Sombrero de Paja");
     const franky = new Carta(7, "Franky", "Personaje", 8, 7, 3, "Coup de Vent", "Sombrero de Paja");
 
-    const campoMugiwara = new Carta(14, "Campo Sombrero de Paja", "Campo", 0, 0, 0, "Aumenta la energía de los Sombrero de Paja en 1", "Sombrero de Paja");
+    const campoMugiwara = new Carta(14, "Campo Mugiwara", "Campo", 0, 0, 0, "Aumenta la energía de los Sombrero de Paja en 1", "Sombrero de Paja");
 
 
 
@@ -190,11 +190,11 @@ export default class Jugador {
     const kuzan = new Carta(18, "Almirante Kuzan", "Personaje", 11, 7, 3, "Hie Hie no Mi", "Marina");
     const fujitora = new Carta(19, "Almirante Fujitora", "Personaje", 11, 8, 2, "Zushi Zushi no Mi", "Marina");
     const doflamingo = new Carta(20, "Donquixote Doflamingo", "Personaje", 10, 7, 2, "Ito Ito no Mi", "Marina");
-    const aokiji = new Carta(21, "Almirante Aokiji", "Personaje", 10, 7, 1, "Hie Hie no Mi", "Marina");
+    const tashigi = new Carta(21, "Tashigi", "Personaje", 10, 7, 1, "Tatsumaki", "Marina");
     const garp = new Carta(22, "Almirante Garp", "Personaje", 11, 8, 3, "Haki", "Marina");
-    const campoMarina = new Carta(26, "Campo Marina", "Campo", 0, 0, 0, "Aumenta la energía de los personajes de la Marina en 1", "Marina");
+    const campoMarina = new Carta(23, "Campo Marina", "Campo", 0, 0, 0, "Aumenta la energía de los personajes de la Marina en 1", "Marina");
 
-    this.deck = [akainu, kizaru, smoker, kuzan, fujitora, doflamingo, aokiji, garp, campoMarina, campoMarina, campoMarina,
+    this.deck = [akainu, kizaru, smoker, kuzan, fujitora, doflamingo, tashigi, garp, campoMarina, campoMarina, campoMarina,
       campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, ...this.getCartasMagicas()];
   }
 

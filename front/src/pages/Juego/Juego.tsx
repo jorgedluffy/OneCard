@@ -4,6 +4,7 @@ import './Juego.css'
 import { FASES, TIPO_CARTA, TRIPULACIONES } from '../../constants'
 import { useNavigate } from 'react-router-dom'
 import { socket } from '../../App'
+import GameCard from '../../components/GameCard/GameCard'
 
 
 
@@ -76,13 +77,13 @@ function Juego() {
       console.log(carta.nombre)
 
       if (carta.tipo === TIPO_CARTA.CAMPO) {
-        return <button disabled={isDisabledCard(carta.tipo)} className='carta_campo' onClick={() => bajarCampo(carta.id)}  > Carta: {carta.nombre}</button>
+        return <GameCard {...carta} tipo='carta_campo' disabled={isDisabledCard(carta.tipo)} onClick={() => bajarCampo(carta.id)} />
       }
       else if (carta.tipo === TIPO_CARTA.PERSONAJE) {
-        return <button disabled={isDisabledCard(carta.tipo)} className='carta_personaje' onClick={() => bajarCarta(carta.id)}  >({carta.energia}) Carta: {carta.nombre}</button>
+        return <GameCard {...carta} tipo='carta_personaje' disabled={isDisabledCard(carta.tipo)} onClick={() => bajarCarta(carta.id)} />
       }
       else {
-        return <button disabled={isDisabledCard(carta.tipo)} className='carta_magica' onClick={() => bajarCarta(carta.id)}  > Carta: {carta.nombre}</button>
+        return <GameCard {...carta} tipo='carta_magica' disabled={isDisabledCard(carta.tipo)} onClick={() => bajarCarta(carta.id)} />
       }
 
     })
@@ -95,8 +96,7 @@ function Juego() {
     return jugador.tablero.map((carta: any) => {
       console.log(carta.nombre)
 
-      return <button disabled={jugador.faseActual !== FASES.ATACAR || carta.energia > mana} className='carta_personaje' onClick={() => atacar(carta.id)}  > ({carta.energia}) Carta: {carta.nombre}</button>
-
+      return <GameCard {...carta} tipo='carta_personaje' disabled={jugador.faseActual !== FASES.ATACAR || carta.energia > mana} onClick={() => atacar(carta.id)} />
 
     })
   }
@@ -108,10 +108,10 @@ function Juego() {
       console.log(carta.nombre)
 
       if (carta.tipo === TIPO_CARTA.PERSONAJE) {
-        return <button disabled={true} className='carta_personaje'> Carta: {carta.nombre}</button >
+        return <GameCard {...carta} tipo='carta_personaje' disabled={true} />
       }
       else {
-        return <button disabled={true} className='carta_magica'  > Carta: {carta.nombre}</button>
+        return <GameCard {...carta} tipo='carta_magica' disabled={true} />
       }
 
     })
@@ -123,7 +123,7 @@ function Juego() {
     return jugador.campos.map((carta: any) => {
       console.log(carta.nombre)
 
-      return <button disabled={true} className='carta_campo' > Carta: {carta.nombre}</button>
+      return <GameCard {...carta} tipo='carta_campo' disabled={true} />
 
 
     })
