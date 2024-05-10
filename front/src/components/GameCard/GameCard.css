@@ -1,0 +1,41 @@
+.puntuacion-carta {
+  width: 30px;
+  height: 40px;
+  align-content: center;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  padding: 2px;
+}
+
+.ataque {
+  background: #DE5836;
+}
+
+.defensa {
+  background: #3D952A;
+}
+
+.footer-carta {
+  justify-content: space-between;
+}
+
+.game-card {
+  border: solid 1px #E5DDDB;
+  border-radius: 4px;
+  box-shadow: 0px 1px 5px -3px;
+}
+
+.no-button {
+  background-color: #fff;
+  border: none;
+  padding: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
