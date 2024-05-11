@@ -96,13 +96,15 @@ export default class Juego {
   //--- 
 
   // METODOS JUEGO
-  cambiarJugador() {
+  cambiarJugador(estaDefendiendo = false) {
     if (this.jugadorActual == 0) {
       this.jugadorActual = 1;
     } else {
       this.jugadorActual = 0;
     }
-    this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
+
+    if (estaDefendiendo) this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.DEFENSA);
+    else this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
 
     this.enviarJugadorActual();
   }
@@ -120,14 +122,18 @@ export default class Juego {
         this.enviarJugadores();
       })
       this.socket.on('pasarTurno', () => {
-        const nuevaFase = this.getNuevaFase()
-        this.jugadoresConectados[this.jugadorActual].setFaseActual(nuevaFase);
-        if (nuevaFase === FASES.ESPERA) {
-          if (this.jugadoresConectados[this.jugadorActual].getEsFasePrimera())
-            this.jugadoresConectados[this.jugadorActual].finalizarPrimeraFase();
-          this.cambiarJugador()
+        if (this.jugadoresConectados[this.jugadorActual].getFaseActual() === FASES.DEFENSA) {
+          this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
         }
-
+        else {
+          const nuevaFase = this.getNuevaFase()
+          this.jugadoresConectados[this.jugadorActual].setFaseActual(nuevaFase);
+          if (nuevaFase === FASES.ESPERA) {
+            if (this.jugadoresConectados[this.jugadorActual].getEsFasePrimera())
+              this.jugadoresConectados[this.jugadorActual].finalizarPrimeraFase();
+            this.cambiarJugador()
+          }
+        }
         this.enviarJugadores();
       })
 
@@ -152,10 +158,18 @@ export default class Juego {
       })
       this.socket.on('atacar', (carta) => {
         console.log('atacar')
+        //TODO: mejorar para que no ataque y luego defienda, que se reste la defensa del ataque
         this.atacar(carta);
         this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
-        this.cambiarJugador();
+        this.cambiarJugador(true);
+        this.enviarJugadores();
+      })
+      this.socket.on('defender', (carta) => {
+        console.log('defender')
+        this.defender(carta)
+        this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
         this.io.emit('comprobarFinPartida', this.jugadoresConectados)
+        this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
         this.enviarJugadores();
       })
       this.socket.on('reiniciarPartida', () => {
@@ -179,14 +193,18 @@ export default class Juego {
   }
   atacar(carta) {
     console.log("Atacando")
-    //TODO: Quitar puntos de vida al contrincante (jugador no actual)
     console.log(carta)
 
     const jugadorContrincante = this.jugadorActual === 0 ? 1 : 0;
     this.jugadoresConectados[jugadorContrincante].restarVidas(carta.ataque);
   }
 
+  defender(carta) {
+    console.log("Defendiendo")
+    console.log(carta)
 
+    this.jugadoresConectados[this.jugadorActual].sumarVidas(carta.defensa);
+  }
   esPrimeraFaseTerminada() {
     return !this.jugadoresConectados[0].getEsFasePrimera() && !this.jugadoresConectados[1].getEsFasePrimera();
   }

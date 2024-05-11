@@ -65,6 +65,10 @@ function Juego() {
     socket.emit('atacar', jugador.tablero.find((carta: any) => carta.id == id))
   }
 
+  const defender = (id: any) => {
+    socket.emit('defender', jugador.tablero.find((carta: any) => carta.id == id))
+  }
+
   const isDisabledCard = (tipo: string): boolean => {
     if (jugador.faseActual === FASES.BAJAR_CAMPO && tipo === TIPO_CARTA.CAMPO) return false;
     else if (jugador.faseActual === FASES.BAJAR_NO_CAMPO && (tipo === TIPO_CARTA.PERSONAJE || tipo === TIPO_CARTA.MAGICA)) return false;
@@ -96,9 +100,12 @@ function Juego() {
 
     return jugador.tablero.map((carta: any) => {
       console.log(carta.nombre)
-
-      return <GameCard {...carta} tipo='carta_personaje' disabled={jugador.faseActual !== FASES.ATACAR || carta.energia > mana} onClick={() => atacar(carta.id)} />
-
+      if (jugador.faseActual === FASES.ATACAR)
+        return <GameCard {...carta} tipo='carta_personaje' disabled={jugador.faseActual !== FASES.ATACAR || carta.energia > mana} onClick={() => atacar(carta.id)} />
+      else if (jugador.faseActual === FASES.DEFENSA)
+        return <GameCard {...carta} tipo='carta_personaje' disabled={jugador.faseActual !== FASES.DEFENSA} onClick={() => defender(carta.id)} />
+      else
+        return <GameCard {...carta} tipo='carta_personaje' disabled={true} />
     })
   }
 
@@ -118,25 +125,13 @@ function Juego() {
     })
   }
 
-  const mostrarCampo = () => {
-    console.log(jugador.campos)
-
-    return jugador.campos.map((carta: any) => {
-      console.log(carta.nombre)
-
-      return <GameCard {...carta} tipo='carta_campo' disabled={true} />
-
-
-    })
-  }
-
-
   const getFaseActual = () => {
     if (jugador.faseActual === FASES.ROBAR) return <>Robo</>
     else if (jugador.faseActual === FASES.BAJAR_CAMPO) return <>Bajar carta de campo</>
     else if (jugador.faseActual === FASES.BAJAR_NO_CAMPO) return <>Bajar carta personaje o magia</>
     else if (jugador.faseActual === FASES.ESPERA) return <>Esperar</>
     else if (jugador.faseActual === FASES.ATACAR) return <>Atacar</>
+    else if (jugador.faseActual === FASES.DEFENSA) return <>Defensa</>
     else return <></>
 
   }

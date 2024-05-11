@@ -12,7 +12,8 @@ export const FASES = {
     BAJAR_NO_CAMPO: 2,
     ATACAR: 3,
     ESPERA: 4,
-    ESPERANDO_REINICIAR: 5
+    ESPERANDO_REINICIAR: 5,
+    DEFENSA: 6
 }
 
 export const TIPO_CARTA = {
