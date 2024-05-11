@@ -5,6 +5,7 @@ import { FASES, TIPO_CARTA, TRIPULACIONES } from '../../constants'
 import { useNavigate } from 'react-router-dom'
 import { socket } from '../../App'
 import GameCard from '../../components/GameCard/GameCard'
+import { Grid } from '@mui/material'
 
 
 
@@ -134,7 +135,7 @@ function Juego() {
     if (jugador.faseActual === FASES.ROBAR) return <>Robo</>
     else if (jugador.faseActual === FASES.BAJAR_CAMPO) return <>Bajar carta de campo</>
     else if (jugador.faseActual === FASES.BAJAR_NO_CAMPO) return <>Bajar carta personaje o magia</>
-    else if (jugador.faseActual === FASES.ESPERA) return <>Turno del contrincante</>
+    else if (jugador.faseActual === FASES.ESPERA) return <>Esperar</>
     else if (jugador.faseActual === FASES.ATACAR) return <>Atacar</>
     else return <></>
 
@@ -142,43 +143,90 @@ function Juego() {
 
   return (
     <>
-      <div className='vidas'>
-        <div >Vidas: {jugador.vidas}</div>
-        {jugadorEnemigo && <div >Vidas enemigo: {jugadorEnemigo.vidas}</div>}
-      </div>
-      {/* {JSON.stringify(jugador)} */}
 
-      <h1>Tu tripulación es:  {jugador.tripulacion == TRIPULACIONES.MARINA ? "MARINA" : "MUGIWARA"} </h1>
-      <h1>Es el turno de:  {esTurnoActual ? "Es tu turno" : "Turno del contrincante"} </h1>
-      <h1>Fase actual:  {getFaseActual()} </h1>
+      <Grid container>
+        <Grid item xs={2}>
+          {
+            jugador && jugador.descartes && <div className='campos-desk-contenido' >CAMPOS:  {jugador.campos.length}</div>
+          }
+          {
+            jugador && jugador.deck && <div className='campos-desk-contenido mt10' >DECK: {jugador.deck.length}</div>
+          }
+        </Grid>
+        <Grid item xs={8} className='texto-centrado'>
+          <Grid container>
+            <Grid item xs={6}>
+              <h1>Tu tripulación es:  {jugador.tripulacion == TRIPULACIONES.MARINA ? "MARINA" : "MUGIWARA"} </h1>
+            </Grid>
+            <Grid item xs={6}>
+              <h1>{esTurnoActual ? "Es tu turno" : "Turno del contrincante"}: {getFaseActual()} </h1>
 
-      {esTurnoActual && jugador && jugador.faseActual !== FASES.ROBAR &&
-        <button onClick={pasarTurno}>PASAR TURNO</button>
-      }
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={2} >
+          <div className='vidas-descartes'>
+            <div className='vidas-descartes-contenido'>
+              <div >Vidas: {jugador.vidas}</div>
+              {jugadorEnemigo && <div >Vidas enemigo: {jugadorEnemigo.vidas}</div>}
+            </div>
 
-      {esTurnoActual && jugador && jugador.faseActual === FASES.ROBAR &&
-        <button onClick={robarCarta}>ROBAR CARTA</button>
-      }
-      <div style={{ display: 'flex' }}>
-        {
-          jugador && jugador.descartes && <div className='contenedor' style={{ width: '50%' }}><h2>DESCARTES: {jugador.descartes.length} </h2></div>
-        }
-        {
-          jugador && jugador.deck && <div className='contenedor' style={{ width: '50%' }}><h2>DECK: {jugador.deck.length} </h2></div>
-        }
-      </div>
-      {
-        jugador && jugador.mano && <div className='contenedor'><h2>MANO</h2>{mostrarMano()}</div>
-      }
-      {
-        jugador && jugador.tablero && <div className='contenedor'><h2>TABLERO</h2>{mostrarTablero()}</div>
-      }
-      {
-        jugador && jugador.campos && <div className='contenedor'><h2>CAMPOS: {jugador.campos.length} </h2>{mostrarCampo()}</div>
-      }
-      {
-        jugadorEnemigo && jugadorEnemigo.tablero && <div className='contenedor'><h2>TABLERO ENEMIGO</h2>{mostrarTableroEnemigo()}</div>
-      }
+            {
+              jugador && jugador.descartes && <div className='vidas-descartes-contenido mt10'>
+                DESCARTES: {jugador.descartes.length}</div>
+            }
+          </div>
+        </Grid>
+      </Grid>
+      <Grid container>
+        <Grid item xs={12} className='contenido-centrado'>
+          {esTurnoActual && jugador && jugador.faseActual !== FASES.ROBAR &&
+            <button onClick={pasarTurno}>PASAR TURNO</button>
+          }
+
+          {esTurnoActual && jugador && jugador.faseActual === FASES.ROBAR &&
+            <button onClick={robarCarta}>ROBAR CARTA</button>
+          }
+        </Grid>
+      </Grid>
+      <Grid container>
+        <Grid item xs={12}>
+          {
+            jugadorEnemigo && jugadorEnemigo.tablero &&
+            <Grid container>
+              <Grid item xs={12} className='contenido-centrado'>
+                <h2>TABLERO ENEMIGO</h2>
+              </Grid>
+              <Grid item xs={12} className='contenido-centrado'>
+                {mostrarTableroEnemigo()}
+              </Grid>
+            </Grid>
+          }
+          <hr />
+          {
+            jugador && jugador.tablero &&
+            <Grid container >
+              <Grid item xs={12} className='contenido-centrado'>
+                <h2>TABLERO</h2>
+              </Grid>
+              <Grid item xs={12} className='contenido-centrado'>
+                {mostrarTablero()}
+              </Grid>
+            </Grid>
+          }
+          {
+            jugador && jugador.mano &&
+            <div className='contenedor max-content'>
+              <div className='contenido-centrado max-content'>
+                <h2>MANO</h2>
+              </div>
+              <div className='contenido-centrado max-content'>
+                {mostrarMano()}
+              </div>
+            </div>
+          }
+        </Grid>
+      </Grid >
     </>
   )
 }

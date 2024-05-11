@@ -1,5 +1,4 @@
 .game-card {
-  margin: 10px;
   border: solid 1px #E5DDDB;
   border-radius: 4px;
   box-shadow: 0px 1px 5px -3px;
@@ -21,6 +20,12 @@
   color: #fff;
   font-weight: bold;
   padding: 2px;
+
+  &.xs {
+    width: 20px;
+    height: 30px;
+    padding: 0;
+  }
 }
 
 .ataque {
@@ -49,7 +54,15 @@
   cursor: default;
 }
 
+.button-lg {
+  width: 252px;
+  height: 322px;
+}
 
+.button-xs {
+  width: 130px;
+  height: 162px;
+}
 
 
 button {
@@ -78,7 +91,7 @@ button:hover:enabled {
 }
 
 button.carta_personaje {
-  background-color: #AF1C1C;
+  border: solid 5px #AF1C1C;
   margin: 5px;
 }
 
@@ -89,7 +102,7 @@ button.carta_personaje:hover:enabled {
 }
 
 button.carta_campo {
-  background-color: #1CAF45;
+  border: solid 5px #1CAF45;
   margin: 5px;
 }
 
@@ -100,7 +113,7 @@ button.carta_campo:hover:enabled {
 }
 
 button.carta_magica {
-  background-color: #7E1CAF;
+  border: solid 5px #7E1CAF;
   margin: 5px;
 }
 

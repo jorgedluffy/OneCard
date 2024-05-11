@@ -5,7 +5,7 @@ import GameCard from "../../components/GameCard/GameCard";
 export default function Temp() {
   //0, "Monkey D. Luffy", "Personaje", 10, 5, 3, "Gomu Gomu no Pistol", "Sombrero de Paja"
   const carta = {
-    id: 0,
+    id: 21,
     nombre: "Monkey D. Luffy",
     tipo: "Personaje",
     ataque: 10,
