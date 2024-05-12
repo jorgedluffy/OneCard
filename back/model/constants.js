@@ -13,7 +13,8 @@ export const FASES = {
     ATACAR: 3,
     ESPERA: 4,
     ESPERANDO_REINICIAR: 5,
-    DEFENSA: 6
+    DEFENSA: 6,
+    HABILIDAD_MAGICA: 7
 }
 
 export const TIPO_CARTA = {

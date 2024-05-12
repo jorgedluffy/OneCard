@@ -13,7 +13,7 @@ function Juego() {
   const [esTurnoActual, setEsTurnoActual] = useState(false)
   const [jugador, setJugador] = useState({} as any)
   const [jugadorEnemigo, setJugadorEnemigo] = useState({} as any)
-
+  const [cartaBufo, setCartaBufo] = useState({} as any)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,6 +31,9 @@ function Juego() {
     })
     socket.on('fasesIniciadas', mensaje => {
       console.log(mensaje)
+    })
+    socket.on('habilidadMagica', carta => {
+      setCartaBufo(carta)
     })
     socket.on('turnoActual', jugador => {
       setEsTurnoActual(jugador.id === socket.id)
@@ -53,26 +56,29 @@ function Juego() {
   const robarCarta = () => socket.emit('robarCarta')
   const pasarTurno = () => socket.emit('pasarTurno')
 
-  const bajarCampo = (id: any) => {
-    socket.emit('bajarCartaCampo', jugador.mano.find((carta: any) => carta.id == id))
+  const bajarCampo = (carta: any) => {
+    socket.emit('bajarCartaCampo', carta)
   }
 
-  const bajarCarta = (id: any) => {
-    socket.emit('bajarCarta', jugador.mano.find((carta: any) => carta.id == id))
+  const bajarCarta = (carta: any) => {
+    socket.emit('bajarCarta', carta)
   }
 
-  const atacar = (id: any) => {
-    socket.emit('atacar', jugador.tablero.find((carta: any) => carta.id == id))
+  const atacar = (carta: any) => {
+    socket.emit('atacar', carta)
   }
 
-  const defender = (id: any) => {
-    socket.emit('defender', jugador.tablero.find((carta: any) => carta.id == id))
+  const defender = (carta: any) => {
+    socket.emit('defender', carta)
   }
+  const habilidadMagica = (carta: any) => {
 
+    socket.emit('cartaMagicaBufoYCartaPersonaje', { carta: carta, cartaBufo: cartaBufo })
+  }
   const isDisabledCard = (tipo: string): boolean => {
     if (jugador.faseActual === FASES.BAJAR_CAMPO && tipo === TIPO_CARTA.CAMPO) return false;
-    else if (jugador.faseActual === FASES.BAJAR_NO_CAMPO && (tipo === TIPO_CARTA.PERSONAJE || tipo === TIPO_CARTA.MAGICA)) return false;
-    else return true
+    if (jugador.faseActual === FASES.BAJAR_NO_CAMPO && (tipo === TIPO_CARTA.PERSONAJE || tipo === TIPO_CARTA.MAGICA)) return false;
+    return true
   }
 
   const mostrarMano = () => {
@@ -82,13 +88,13 @@ function Juego() {
       console.log(carta.nombre)
 
       if (carta.tipo === TIPO_CARTA.CAMPO) {
-        return <GameCard {...carta} tipo='carta_campo' disabled={isDisabledCard(carta.tipo)} onClick={() => bajarCampo(carta.id)} />
+        return <GameCard {...carta} tipo='carta_campo' disabled={isDisabledCard(carta.tipo)} onClick={() => bajarCampo(carta)} />
       }
       else if (carta.tipo === TIPO_CARTA.PERSONAJE) {
-        return <GameCard {...carta} tipo='carta_personaje' disabled={isDisabledCard(carta.tipo)} onClick={() => bajarCarta(carta.id)} />
+        return <GameCard {...carta} tipo='carta_personaje' disabled={isDisabledCard(carta.tipo)} onClick={() => bajarCarta(carta)} />
       }
       else {
-        return <GameCard {...carta} tipo='carta_magica' disabled={isDisabledCard(carta.tipo)} onClick={() => bajarCarta(carta.id)} />
+        return <GameCard {...carta} tipo='carta_magica' disabled={isDisabledCard(carta.tipo)} onClick={() => bajarCarta(carta)} />
       }
 
     })
@@ -97,13 +103,16 @@ function Juego() {
   const mostrarTablero = () => {
     console.log(jugador.tablero)
     const mana = jugador.campos.length;
+    console.log(jugador.faseActual)
 
     return jugador.tablero.map((carta: any) => {
       console.log(carta.nombre)
       if (jugador.faseActual === FASES.ATACAR)
-        return <GameCard {...carta} tipo='carta_personaje' disabled={jugador.faseActual !== FASES.ATACAR || carta.energia > mana} onClick={() => atacar(carta.id)} />
+        return <GameCard {...carta} tipo='carta_personaje' disabled={jugador.faseActual !== FASES.ATACAR || carta.energia > mana} onClick={() => atacar(carta)} />
       else if (jugador.faseActual === FASES.DEFENSA)
-        return <GameCard {...carta} tipo='carta_personaje' disabled={jugador.faseActual !== FASES.DEFENSA} onClick={() => defender(carta.id)} />
+        return <GameCard {...carta} tipo='carta_personaje' onClick={() => defender(carta)} />
+      else if (jugador.faseActual === FASES.HABILIDAD_MAGICA)
+        return <GameCard {...carta} tipo='carta_personaje' onClick={() => habilidadMagica(carta)} />
       else
         return <GameCard {...carta} tipo='carta_personaje' disabled={true} />
     })
@@ -127,12 +136,13 @@ function Juego() {
 
   const getFaseActual = () => {
     if (jugador.faseActual === FASES.ROBAR) return <>Robo</>
-    else if (jugador.faseActual === FASES.BAJAR_CAMPO) return <>Bajar carta de campo</>
-    else if (jugador.faseActual === FASES.BAJAR_NO_CAMPO) return <>Bajar carta personaje o magia</>
-    else if (jugador.faseActual === FASES.ESPERA) return <>Esperar</>
-    else if (jugador.faseActual === FASES.ATACAR) return <>Atacar</>
-    else if (jugador.faseActual === FASES.DEFENSA) return <>Defensa</>
-    else return <></>
+    if (jugador.faseActual === FASES.BAJAR_CAMPO) return <>Bajar carta de campo</>
+    if (jugador.faseActual === FASES.BAJAR_NO_CAMPO) return <>Bajar carta personaje o magia</>
+    if (jugador.faseActual === FASES.ESPERA) return <>Esperar</>
+    if (jugador.faseActual === FASES.ATACAR) return <>Atacar</>
+    if (jugador.faseActual === FASES.DEFENSA) return <>Defensa</>
+    if (jugador.faseActual === FASES.HABILIDAD_MAGICA) return <>Habilidad mágica</>
+    return <></>
 
   }
 

@@ -1,4 +1,4 @@
-import { FASES, TRIPULACIONES } from './constants.js';
+import { FASES, TRIPULACIONES, TIPO_CARTA } from './constants.js';
 import Jugador from './Jugador.js';
 // Juego.js
 export default class Juego {
@@ -146,14 +146,14 @@ export default class Juego {
       this.socket.on('bajarCarta', (carta) => {
         console.log('bajarCarta')
         this.jugadoresConectados[this.jugadorActual].bajarCarta(carta);
-        if (this.jugadoresConectados[this.jugadorActual].getEsFasePrimera()) {
-          this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
-          this.jugadoresConectados[this.jugadorActual].finalizarPrimeraFase();
-          this.cambiarJugador();
+
+        if (carta.tipo === TIPO_CARTA.MAGICA) {
+          this.usarHabilidadMagica(carta)
+          this.jugadoresConectados[this.jugadorActual].descartes.push(carta)
+        } else {
+          this.finalizarBajarCarta()
         }
-        else if (this.esPrimeraFaseTerminada) {
-          this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ATACAR);
-        }
+
         this.enviarJugadores();
       })
       this.socket.on('atacar', (carta) => {
@@ -172,6 +172,31 @@ export default class Juego {
         this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
         this.enviarJugadores();
       })
+      this.socket.on('cartaMagicaBufoYCartaPersonaje', (cartas) => {
+        if (cartas.cartaBufo.id === 11) {
+
+          this.jugadoresConectados[this.jugadorActual].setTablero(this.jugadoresConectados[this.jugadorActual].tablero.map(c => {
+            if (c.id == cartas.carta.id)
+
+              return { ...c, defensa: c.defensa += cartas.cartaBufo.defensa }
+            else
+              return c
+          }))
+        }
+        else if (cartas.cartaBufo.id === 13 || cartas.cartaBufo.id === 14) {
+          this.jugadoresConectados[this.jugadorActual].setTablero(this.jugadoresConectados[this.jugadorActual].tablero.map(c => {
+            if (c.id == cartas.carta.id)
+
+              return { ...c, ataque: c.ataque += cartas.cartaBufo.ataque }
+            else
+              return c
+          }))
+
+        }
+        this.finalizarBajarCarta()
+
+        this.enviarJugadores();
+      })
       this.socket.on('reiniciarPartida', () => {
         console.log('reiniciarPartida')
         this.reiniciarPartida();
@@ -183,6 +208,42 @@ export default class Juego {
       })
     }
   }
+  finalizarBajarCarta() {
+
+    if (this.jugadoresConectados[this.jugadorActual].getEsFasePrimera()) {
+      this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
+      this.jugadoresConectados[this.jugadorActual].finalizarPrimeraFase();
+      this.cambiarJugador();
+    }
+    else if (this.esPrimeraFaseTerminada) {
+      this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ATACAR);
+    }
+  }
+
+  usarHabilidadMagica(carta) {
+
+    if (carta.id === 9 || carta.id === 10) {
+      this.jugadoresConectados[this.jugadorActual].sumarVidas(carta.defensa)
+      this.finalizarBajarCarta()
+      return
+    }
+
+    if (carta.id === 12) {
+      let jugadorContrincante = this.jugadorActual === 0 ? this.jugadoresConectados[1] : this.jugadoresConectados[0]
+      jugadorContrincante.restarVidas(carta.ataque)
+      this.finalizarBajarCarta()
+      return
+    }
+
+    if (carta.id === 11 || carta.id === 13 || carta.id === 14) {
+      this.jugadoresConectados[this.jugadorActual].faseActual = FASES.HABILIDAD_MAGICA
+
+      this.io.emit('habilidadMagica', carta)
+      this.enviarJugadores()
+    }
+    return
+  }
+
   getNuevaFase() {
     const faseActual = this.jugadoresConectados[this.jugadorActual].getFaseActual();
 

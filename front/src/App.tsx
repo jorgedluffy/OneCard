@@ -18,7 +18,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Juego />} />
-        {/* <Route path="/" element={<Temp />} /> */}
+        {/*<Route path="/" element={<Temp />} />*/}
         <Route path="/perdedor" element={<Perdedor />} />
         <Route path="/ganador" element={<Ganador />} />
       </Routes>
