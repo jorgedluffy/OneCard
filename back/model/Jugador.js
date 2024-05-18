@@ -166,8 +166,10 @@ export default class Jugador {
 
     const campoMugiwara = new Carta(8, "Campo Mugiwara", "Campo", 0, 0, 0, "Aumenta la energía de los Sombrero de Paja en 1", "Sombrero de Paja");
 
-    this.deck = [luffy, zoro, sanji, nami, usopp, robin, chopper, franky, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara,
-      campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, ...this.getCartasMagicas()];
+    this.deck = [luffy, zoro, sanji, nami, usopp, nami, usopp, nami, usopp, nami, usopp, nami, usopp, nami, usopp, nami, usopp,
+      robin, chopper, franky, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara,
+      campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara, campoMugiwara,
+      ...this.getCartasMagicas()];
 
   }
 
@@ -181,12 +183,14 @@ export default class Jugador {
     const fujitora = new Carta(19, "Almirante Fujitora", "Personaje", 8, 1, 6, "Zushi Zushi no Mi", "Marina");
     const doflamingo = new Carta(20, "Donquixote Doflamingo", "Personaje", 6, 3, 4, "Jaula de pajaros", "Marina");
     const tashigi = new Carta(21, "Tashigi", "Personaje", 1, 3, 1, "Tatsumaki", "Marina");
-    const garp = new Carta(22, "Almirante Garp", "Personaje", 3, 8, 4, "Puño de amor", "Marina");
+    const garp = new Carta(22, "Almirante Garp", "Personaje", 3, 8, 3, "Puño de amor", "Marina");
 
     const campoMarina = new Carta(23, "Campo Marina", "Campo", 0, 0, 0, "Aumenta la energía de los personajes de la Marina en 1", "Marina");
 
-    this.deck = [akainu, kizaru, smoker, kuzan, fujitora, doflamingo, tashigi, garp, campoMarina, campoMarina, campoMarina,
-      campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, ...this.getCartasMagicas()];
+    this.deck = [akainu, kizaru, smoker, kuzan, fujitora, doflamingo, tashigi, garp, tashigi, garp, tashigi, garp, tashigi, garp, tashigi, garp, tashigi, garp,
+      tashigi, garp, tashigi, garp, tashigi, garp, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina,
+      campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina, campoMarina,
+      ...this.getCartasMagicas()];
   }
 
   bajarCartaCampo(carta) {

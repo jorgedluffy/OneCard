@@ -6,6 +6,7 @@ export default class Juego {
   partidaIniciada;
   jugadorActual;
   tripulacion = 1;
+  cartaSeleccionada;
   io;
   socket;
 
@@ -96,15 +97,17 @@ export default class Juego {
   //--- 
 
   // METODOS JUEGO
-  cambiarJugador(estaDefendiendo = false) {
+  cambiarJugador(cambiarEstado = true, estaDefendiendo = false) {
     if (this.jugadorActual == 0) {
       this.jugadorActual = 1;
     } else {
       this.jugadorActual = 0;
     }
 
-    if (estaDefendiendo) this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.DEFENSA);
-    else this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
+    if (cambiarEstado) {
+      if (estaDefendiendo) this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.DEFENSA);
+      else this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
+    }
 
     this.enviarJugadorActual();
   }
@@ -156,21 +159,27 @@ export default class Juego {
 
         this.enviarJugadores();
       })
-      this.socket.on('atacar', (carta) => {
-        console.log('atacar')
-        //TODO: mejorar para que no ataque y luego defienda, que se reste la defensa del ataque
-        this.atacar(carta);
+      this.socket.on('esperarDefensa', (carta) => {
+        console.log('esperarDefensa')
+        this.cartaSeleccionada = carta;
         this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
-        this.cambiarJugador(true);
+        this.cambiarJugador(true, true);
         this.enviarJugadores();
       })
-      this.socket.on('defender', (carta) => {
-        console.log('defender')
-        this.defender(carta)
+      this.socket.on('atacar', () => {
+        console.log('atacar')
+        this.jugadoresConectados[this.jugadorActual].restarVidas(this.cartaSeleccionada.ataque)
         this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
         this.io.emit('comprobarFinPartida', this.jugadoresConectados)
         this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
+
         this.enviarJugadores();
+      })
+      this.socket.on('defender', (cartaDefensa) => {
+        console.log('defender')
+        this.defender(cartaDefensa)
+        this.enviarJugadores();
+        this.cartaSeleccionada = null;
       })
       this.socket.on('cartaMagicaBufoYCartaPersonaje', (cartas) => {
         if (cartas.cartaBufo.id === 11) {
@@ -260,11 +269,53 @@ export default class Juego {
     this.jugadoresConectados[jugadorContrincante].restarVidas(carta.ataque);
   }
 
-  defender(carta) {
-    console.log("Defendiendo")
-    console.log(carta)
+  defender(cartaDefensa) {
+    console.log("carta defensa", cartaDefensa)
 
-    this.jugadoresConectados[this.jugadorActual].sumarVidas(carta.defensa);
+    if (this.cartaSeleccionada) {
+      if (this.cartaSeleccionada.ataque > cartaDefensa.defensa) {
+        // Se resta vida, se descarta carta de defensa, se confirma si hay ganador y sino se continua
+        console.log("cartaAtaque > cartaDefensa")
+        let vidaPerdida = this.cartaSeleccionada.ataque - cartaDefensa.defensa
+        this.jugadoresConectados[this.jugadorActual].restarVidas(vidaPerdida)
+
+        this.jugadoresConectados[this.jugadorActual].tablero = this.jugadoresConectados[this.jugadorActual].tablero.filter(c => c.id !== cartaDefensa.id)
+        if (cartaDefensa.tipo === TIPO_CARTA.PERSONAJE)
+          this.jugadoresConectados[this.jugadorActual].descartes.push(cartaDefensa)
+
+        this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ESPERA);
+        this.io.emit('comprobarFinPartida', this.jugadoresConectados)
+        this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
+      }
+      else if (this.cartaSeleccionada.ataque < cartaDefensa.defensa) {
+        // Se cambia de jugador, se descarta la carta de ataque y volvemos al jugador que defiende. Se pasa a fase de robo.
+        console.log("cartaAtaque < cartaDefensa")
+        this.cambiarJugador(false)
+        this.jugadoresConectados[this.jugadorActual].tablero = this.jugadoresConectados[this.jugadorActual].tablero.filter(c => c.id !== this.cartaSeleccionada.id)
+        if (this.cartaSeleccionada.tipo === TIPO_CARTA.PERSONAJE)
+          this.jugadoresConectados[this.jugadorActual].descartes.push(this.cartaSeleccionada)
+
+        this.cambiarJugador()
+
+        this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
+      }
+      else if (this.cartaSeleccionada.ataque === cartaDefensa.defensa) {
+        //iguales nada (las dos cartas descartes)
+        //se descarta carta de defensa, se cambia al jugador de ataque, se descarta carta ataque, se vuelve a jugador defensor y se cambia estado a robo.
+        console.log("cartaAtaque = cartaDefensa")
+        this.jugadoresConectados[this.jugadorActual].tablero = this.jugadoresConectados[this.jugadorActual].tablero.filter(c => c.id !== cartaDefensa.id)
+        if (cartaDefensa.tipo === TIPO_CARTA.PERSONAJE)
+          this.jugadoresConectados[this.jugadorActual].descartes.push(cartaDefensa)
+        this.cambiarJugador(false)
+        this.jugadoresConectados[this.jugadorActual].tablero = this.jugadoresConectados[this.jugadorActual].tablero.filter(c => c.id !== this.cartaSeleccionada.id)
+        if (this.cartaSeleccionada.tipo === TIPO_CARTA.PERSONAJE)
+          this.jugadoresConectados[this.jugadorActual].descartes.push(this.cartaSeleccionada)
+
+        this.cambiarJugador() // Al no pasar parametros, cambia a estado robar
+      } else {
+        console.log("Error al recibir las cartas")
+      }
+    }
   }
   esPrimeraFaseTerminada() {
     return !this.jugadoresConectados[0].getEsFasePrimera() && !this.jugadoresConectados[1].getEsFasePrimera();

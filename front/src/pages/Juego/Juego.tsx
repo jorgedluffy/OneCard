@@ -56,6 +56,8 @@ function Juego() {
   const robarCarta = () => socket.emit('robarCarta')
   const pasarTurno = () => socket.emit('pasarTurno')
 
+  const pasarTurnoDefendiendo = () => socket.emit('atacar')
+
   const bajarCampo = (carta: any) => {
     socket.emit('bajarCartaCampo', carta)
   }
@@ -65,11 +67,11 @@ function Juego() {
   }
 
   const atacar = (carta: any) => {
-    socket.emit('atacar', carta)
+    socket.emit('esperarDefensa', carta)
   }
 
-  const defender = (carta: any) => {
-    socket.emit('defender', carta)
+  const defender = (cartaDefensa: any) => {
+    socket.emit('defender', cartaDefensa)
   }
   const habilidadMagica = (carta: any) => {
 
@@ -185,7 +187,12 @@ function Juego() {
       </Grid>
       <Grid container>
         <Grid item xs={12} className='contenido-centrado'>
-          {esTurnoActual && jugador && jugador.faseActual !== FASES.ROBAR &&
+
+          {esTurnoActual && jugador && jugador.faseActual === FASES.DEFENSA &&
+            <button onClick={pasarTurnoDefendiendo}>PASAR TURNO</button>
+          }
+
+          {esTurnoActual && jugador && jugador.faseActual !== FASES.ROBAR && jugador.faseActual !== FASES.DEFENSA &&
             <button onClick={pasarTurno}>PASAR TURNO</button>
           }
 
