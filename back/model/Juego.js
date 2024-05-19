@@ -182,7 +182,7 @@ export default class Juego {
         this.cartaSeleccionada = null;
       })
       this.socket.on('cartaMagicaBufoYCartaPersonaje', (cartas) => {
-        if (cartas.cartaBufo.id === 11) {
+        if (cartas.cartaBufo.nombre === "Defensa Franky Shogun") {
 
           this.jugadoresConectados[this.jugadorActual].setTablero(this.jugadoresConectados[this.jugadorActual].tablero.map(c => {
             if (c.id == cartas.carta.id)
@@ -192,7 +192,7 @@ export default class Juego {
               return c
           }))
         }
-        else if (cartas.cartaBufo.id === 13 || cartas.cartaBufo.id === 14) {
+        else if (cartas.cartaBufo.nombre === "Enma" || cartas.cartaBufo.nombre === Murakumogiri) {
           this.jugadoresConectados[this.jugadorActual].setTablero(this.jugadoresConectados[this.jugadorActual].tablero.map(c => {
             if (c.id == cartas.carta.id)
 
@@ -231,20 +231,20 @@ export default class Juego {
 
   usarHabilidadMagica(carta) {
 
-    if (carta.id === 9 || carta.id === 10) {
+    if (carta.nombre === "Cura Chopper" || carta.nombre === "Cura Hiriluk") {
       this.jugadoresConectados[this.jugadorActual].sumarVidas(carta.defensa)
       this.finalizarBajarCarta()
       return
     }
 
-    if (carta.id === 12) {
+    if (carta.nombre === "Dial de Impacto") {
       let jugadorContrincante = this.jugadorActual === 0 ? this.jugadoresConectados[1] : this.jugadoresConectados[0]
       jugadorContrincante.restarVidas(carta.ataque)
       this.finalizarBajarCarta()
       return
     }
 
-    if (carta.id === 11 || carta.id === 13 || carta.id === 14) {
+    if (carta.nombre === "Defensa Franky Shogun" || carta.nombre === "Enma" || carta.nombre === "Murakumogiri") {
       this.jugadoresConectados[this.jugadorActual].faseActual = FASES.HABILIDAD_MAGICA
 
       this.io.emit('habilidadMagica', carta)
