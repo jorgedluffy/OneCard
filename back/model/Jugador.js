@@ -147,8 +147,8 @@ export default class Jugador {
     const CuraHiriluk = new Carta(10, "Cura Hiriluk", "Magica", 0, 5, 0, "Restaura 5 puntos de vida", "");
     const DefensaFrankyShogun = new Carta(11, "Defensa Franky Shogun", "Magica", 0, 7, 0, "Aumenta la defensa de un personaje en 7", "");
     const DialImpacto = new Carta(12, "Dial de Impacto", "Magica", 1, 0, 0, "Quita 1 puntos de vida", "");
-    const Enma = new Carta(13, "Enma", "Magica", 3, 0, 0, "Quita 3 puntos de vida", "");
-    const Murakumogiri = new Carta(14, "Murakumogiri", "Magica", 5, 0, 0, "Quita 5 puntos de vida", "");
+    const Enma = new Carta(13, "Enma", "Magica", 3, 0, 0, "Aumenta 3 puntos de ataque a una carta personaje", "");
+    const Murakumogiri = new Carta(14, "Murakumogiri", "Magica", 5, 0, 0, "Aumenta 5 puntos de ataque a una carta personaje", "");
 
     return [Enma, CuraChopper, DefensaFrankyShogun, Murakumogiri, CuraHiriluk, DialImpacto];
   }
