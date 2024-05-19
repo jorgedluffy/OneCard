@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "b534cad2-0ea0-47cf-9f35-2687519e989d",
+		"name": "OneCard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32523983"
+	},
+	"item": [
+		{
+			"name": "add card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Monkey D. Luffy\",\r\n  \"tipo\": \"Personaje\",\r\n  \"ataque\": 10,\r\n  \"defensa\": 5,\r\n  \"energia\": 7,\r\n  \"habilidadEspecial\": \"Red Hawk\",\r\n  \"tripulacion\": \"Sombrero de Paja\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cartas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cartas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cartas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cartas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cartas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete carta id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/cartas/664a16f3bb8d284e7d04a58e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cartas",
+						"664a16f3bb8d284e7d04a58e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update card",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Monkey D. Luffy2\",\r\n  \"tipo\": \"Personaje\",\r\n  \"ataque\": 10,\r\n  \"defensa\": 5,\r\n  \"energia\": 7,\r\n  \"habilidadEspecial\": \"Red Hawk\",\r\n  \"tripulacion\": \"Sombrero de Paja\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cartas/664a16f3bb8d284e7d04a58e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cartas",
+						"664a16f3bb8d284e7d04a58e"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
