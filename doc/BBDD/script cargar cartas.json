@@ -1,0 +1,592 @@
+[
+    {
+        "nombre": "Cura Chopper",
+        "tipo": "Magica",
+        "ataque": 0,
+        "defensa": 3,
+        "energia": 0,
+        "habilidadEspecial": "Restaura 3 puntos de vida",
+        "tripulacion": "",
+        "img": "9.png"
+    },
+    {
+        "nombre": "Cura Hiriluk",
+        "tipo": "Magica",
+        "ataque": 0,
+        "defensa": 5,
+        "energia": 0,
+        "habilidadEspecial": "Restaura 5 puntos de vida",
+        "tripulacion": "",
+        "img": "10.png"
+    },
+    {
+        "nombre": "Defensa Franky Shogun",
+        "tipo": "Magica",
+        "ataque": 0,
+        "defensa": 7,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la defensa de un personaje en 7",
+        "tripulacion": "",
+        "img": "11.png"
+    },
+    {
+        "nombre": "Dial de Impacto",
+        "tipo": "Magica",
+        "ataque": 1,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Quita 1 puntos de vida",
+        "tripulacion": "",
+        "img": "12.png"
+    },
+    {
+        "nombre": "Dial de Impacto",
+        "tipo": "Magica",
+        "ataque": 1,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Quita 1 puntos de vida",
+        "tripulacion": "",
+        "img": "12.png"
+    },
+    {
+        "nombre": "Dial de Impacto",
+        "tipo": "Magica",
+        "ataque": 1,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Quita 1 puntos de vida",
+        "tripulacion": "",
+        "img": "12.png"
+    },
+    {
+        "nombre": "Dial de Impacto",
+        "tipo": "Magica",
+        "ataque": 1,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Quita 1 puntos de vida",
+        "tripulacion": "",
+        "img": "12.png"
+    },
+    {
+        "nombre": "Dial de Impacto",
+        "tipo": "Magica",
+        "ataque": 1,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Quita 1 puntos de vida",
+        "tripulacion": "",
+        "img": "12.png"
+    },
+    {
+        "nombre": "Enma",
+        "tipo": "Magica",
+        "ataque": 3,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta 3 puntos de ataque a una carta personaje",
+        "tripulacion": "",
+        "img": "13.png"
+    },
+    {
+        "nombre": "Murakumogiri",
+        "tipo": "Magica",
+        "ataque": 5,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta 5 puntos de ataque a una carta personaje",
+        "tripulacion": "",
+        "img": "14.png"
+    },
+    {
+        "nombre": "Monkey D. Luffy",
+        "tipo": "Personaje",
+        "ataque": 10,
+        "defensa": 5,
+        "energia": 7,
+        "habilidadEspecial": "Red Hawk",
+        "tripulacion": "Sombrero de Paja",
+        "img": "0.png"
+    },
+    {
+        "nombre": "Roronoa Zoro",
+        "tipo": "Personaje",
+        "ataque": 8,
+        "defensa": 6,
+        "energia": 6,
+        "habilidadEspecial": "Santoryu: Oni Giri",
+        "tripulacion": "Sombrero de Paja",
+        "img": "1.png"
+    },
+    {
+        "nombre": "Vinsmoke Sanji",
+        "tipo": "Personaje",
+        "ataque": 4,
+        "defensa": 4,
+        "energia": 4,
+        "habilidadEspecial": "Diable Jambe",
+        "tripulacion": "Sombrero de Paja",
+        "img": "2.png"
+    },
+    {
+        "nombre": "Nami",
+        "tipo": "Personaje",
+        "ataque": 2,
+        "defensa": 3,
+        "energia": 2,
+        "habilidadEspecial": "Clima Tact",
+        "tripulacion": "Sombrero de Paja",
+        "img": "3.png"
+    },
+    {
+        "nombre": "Nami",
+        "tipo": "Personaje",
+        "ataque": 2,
+        "defensa": 3,
+        "energia": 2,
+        "habilidadEspecial": "Clima Tact",
+        "tripulacion": "Sombrero de Paja",
+        "img": "3.png"
+    },
+    {
+        "nombre": "Nami",
+        "tipo": "Personaje",
+        "ataque": 2,
+        "defensa": 3,
+        "energia": 2,
+        "habilidadEspecial": "Clima Tact",
+        "tripulacion": "Sombrero de Paja",
+        "img": "3.png"
+    },
+    {
+        "nombre": "Nami",
+        "tipo": "Personaje",
+        "ataque": 2,
+        "defensa": 3,
+        "energia": 2,
+        "habilidadEspecial": "Clima Tact",
+        "tripulacion": "Sombrero de Paja",
+        "img": "3.png"
+    },
+    {
+        "nombre": "Usopp",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Kabuto",
+        "tripulacion": "Sombrero de Paja",
+        "img": "4.png"
+    },
+    {
+        "nombre": "Usopp",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Kabuto",
+        "tripulacion": "Sombrero de Paja",
+        "img": "4.png"
+    },
+    {
+        "nombre": "Usopp",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Kabuto",
+        "tripulacion": "Sombrero de Paja",
+        "img": "4.png"
+    },
+    {
+        "nombre": "Usopp",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Kabuto",
+        "tripulacion": "Sombrero de Paja",
+        "img": "4.png"
+    },
+    {
+        "nombre": "Usopp",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Kabuto",
+        "tripulacion": "Sombrero de Paja",
+        "img": "4.png"
+    },
+    {
+        "nombre": "Nico Robin",
+        "tipo": "Personaje",
+        "ataque": 4,
+        "defensa": 2,
+        "energia": 3,
+        "habilidadEspecial": "Mil Flower",
+        "tripulacion": "Sombrero de Paja",
+        "img": "5.png"
+    },
+    {
+        "nombre": "Tony Tony Chopper",
+        "tipo": "Personaje",
+        "ataque": 2,
+        "defensa": 4,
+        "energia": 2,
+        "habilidadEspecial": "Monster Point",
+        "tripulacion": "Sombrero de Paja",
+        "img": "6.png"
+    },
+    {
+        "nombre": "Franky",
+        "tipo": "Personaje",
+        "ataque": 5,
+        "defensa": 7,
+        "energia": 4,
+        "habilidadEspecial": "Coup de Vent",
+        "tripulacion": "Sombrero de Paja",
+        "img": "7.png"
+    },
+    {
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "nombre": "Almirante Akainu",
+        "tipo": "Personaje",
+        "ataque": 8,
+        "defensa": 4,
+        "energia": 7,
+        "habilidadEspecial": "Magu Magu no Mi",
+        "tripulacion": "Marina",
+        "img": "15.png"
+    },
+    {
+        "nombre": "Almirante Kizaru",
+        "tipo": "Personaje",
+        "ataque": 7,
+        "defensa": 4,
+        "energia": 6,
+        "habilidadEspecial": "Pika Pika no Mi",
+        "tripulacion": "Marina",
+        "img": "16.png"
+    },
+    {
+        "nombre": "Smoker",
+        "tipo": "Personaje",
+        "ataque": 5,
+        "defensa": 3,
+        "energia": 4,
+        "habilidadEspecial": "Moku Moku no Mi",
+        "tripulacion": "Marina",
+        "img": "17.png"
+    },
+    {
+        "nombre": "Almirante Kuzan",
+        "tipo": "Personaje",
+        "ataque": 7,
+        "defensa": 4,
+        "energia": 6,
+        "habilidadEspecial": "Hie Hie no Mi",
+        "tripulacion": "Marina",
+        "img": "18.png"
+    },
+    {
+        "nombre": "Almirante Fujitora",
+        "tipo": "Personaje",
+        "ataque": 8,
+        "defensa": 1,
+        "energia": 6,
+        "habilidadEspecial": "Zushi Zushi no Mi",
+        "tripulacion": "Marina",
+        "img": "19.png"
+    },
+    {
+        "nombre": "Donquixote Doflamingo",
+        "tipo": "Personaje",
+        "ataque": 6,
+        "defensa": 3,
+        "energia": 4,
+        "habilidadEspecial": "Jaula de pajaros",
+        "tripulacion": "Marina",
+        "img": "20.png"
+    },
+    {
+        "nombre": "Tashigi",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Tatsumaki",
+        "tripulacion": "Marina",
+        "img": "21.png"
+    },
+    {
+        "nombre": "Tashigi",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Tatsumaki",
+        "tripulacion": "Marina",
+        "img": "21.png"
+    },
+    {
+        "nombre": "Tashigi",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Tatsumaki",
+        "tripulacion": "Marina",
+        "img": "21.png"
+    },
+    {
+        "nombre": "Tashigi",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Tatsumaki",
+        "tripulacion": "Marina",
+        "img": "21.png"
+    },
+    {
+        "nombre": "Tashigi",
+        "tipo": "Personaje",
+        "ataque": 1,
+        "defensa": 3,
+        "energia": 1,
+        "habilidadEspecial": "Tatsumaki",
+        "tripulacion": "Marina",
+        "img": "21.png"
+    },
+    {
+        "nombre": "Almirante Garp",
+        "tipo": "Personaje",
+        "ataque": 3,
+        "defensa": 8,
+        "energia": 3,
+        "habilidadEspecial": "Puño de amor",
+        "tripulacion": "Marina",
+        "img": "22.png"
+    },
+    {
+        "nombre": "Almirante Garp",
+        "tipo": "Personaje",
+        "ataque": 3,
+        "defensa": 8,
+        "energia": 3,
+        "habilidadEspecial": "Puño de amor",
+        "tripulacion": "Marina",
+        "img": "22.png"
+    },
+    {
+        "nombre": "Almirante Garp",
+        "tipo": "Personaje",
+        "ataque": 3,
+        "defensa": 8,
+        "energia": 3,
+        "habilidadEspecial": "Puño de amor",
+        "tripulacion": "Marina",
+        "img": "22.png"
+    },
+    {
+        "nombre": "Almirante Garp",
+        "tipo": "Personaje",
+        "ataque": 3,
+        "defensa": 8,
+        "energia": 3,
+        "habilidadEspecial": "Puño de amor",
+        "tripulacion": "Marina",
+        "img": "22.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
+    {
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidadEspecial": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    }
+]

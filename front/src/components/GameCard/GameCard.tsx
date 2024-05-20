@@ -12,6 +12,7 @@ interface ICardProps {
   habilidad: string,
   tripulacion: string,
   disabled: boolean,
+  img: string,
   onClick: () => void
 }
 
@@ -39,7 +40,7 @@ export default function GameCard(props: ICardProps) {
             component="img"
             alt={props.nombre}
             height={estaSeleccionado ? "140" : '120'}
-            image={`./src/assets/cards/${props.id}.png`}
+            image={`./src/assets/cards/${props.img}`}
           />
           {estaSeleccionado && (
             <>
