@@ -62,27 +62,26 @@ export default class Juego {
     this.partidaIniciada = this.jugadoresConectados.length == 2 && !this.partidaIniciada;
   }
 
-  iniciarPartida() {
+  async iniciarPartida() {
     console.log('Partida iniciada');
     this.io.emit('partidaIniciada', { mensaje: '¡La partida ha comenzado!' });
 
-    this.jugadoresConectados.forEach(j => {
-      // inicializarDeck
-      j.inicializarCartas();
-      j.barajarCartas();
-      // jugadores roban cartas iniciales
-      j.robarCartasIniciales();
-    });
+    // Esperar a que todos los jugadores inicialicen sus cartas
+    await Promise.all(this.jugadoresConectados.map(async (jugador) => {
+      await jugador.inicializarCartas();
+      jugador.barajarCartas();
+      jugador.robarCartasIniciales();
+    }));
 
     if (this.io) {
       this.io.emit('fasesIniciadas', { mensaje: '¡Las fases han comenzado!' });
     }
-    // inician fases
+
+    // Iniciar fases
     this.jugadorActual = 0;
-    this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR)
+    this.jugadoresConectados[this.jugadorActual].setFaseActual(FASES.ROBAR);
     this.enviarJugadorActual();
     this.enviarJugadores();
-
   }
 
   reiniciarPartida() {
