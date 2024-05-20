@@ -7,8 +7,9 @@ export default class Carta {
   energia;
   habilidad;
   tripulacion;
+  img;
 
-  constructor(id, nombre, tipo, ataque, defensa, energia, habilidad, tripulacion) {
+  constructor(id, nombre, tipo, ataque, defensa, energia, habilidad, tripulacion, img) {
     this.id = id;
     this.nombre = nombre; // Nombre de la carta (por ejemplo, Luffy)
     this.tipo = tipo; // Tipo de la carta (por ejemplo, personaje, campo, magica)
@@ -17,6 +18,7 @@ export default class Carta {
     this.energia = energia; // Energias necesarias para bajar la carta (puntos de energia)
     this.habilidad = habilidad; // Habilidad de la carta (habilidad especial)
     this.tripulacion = tripulacion; // A qué tripulación pertenece la carta (por ejemplo, Marina o Sombrero de Paja)
+    this.img = img; // nombre de la imagen que pertenece la carta
   }
 
   mostrarInformacion() {

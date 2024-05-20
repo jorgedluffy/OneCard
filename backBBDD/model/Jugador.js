@@ -170,7 +170,8 @@ async function getCartasTripulacion(trip) {
       carta.defensa,
       carta.energia,
       carta.habilidadEspecial,
-      carta.tripulacion
+      carta.tripulacion,
+      carta.img
     ));
   } catch (error) {
     console.error('There has been a problem with your fetch operation:', error);
@@ -200,7 +201,8 @@ async function getCartasMagicas() {
       carta.defensa,
       carta.energia,
       carta.habilidadEspecial,
-      carta.tripulacion
+      carta.tripulacion,
+      carta.img
     ));
   } catch (error) {
     console.error('There has been a problem with your fetch operation:', error);
