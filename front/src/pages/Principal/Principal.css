@@ -1,0 +1,26 @@
+.container {
+  text-align: center;
+}
+
+.appBar {
+  background: transparent;
+  box-shadow: none;
+}
+
+.iconButton {
+  color: white;
+}
+
+.icon {
+  color: #4896FF;
+}
+
+.gif {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 100px auto;
+}
+
+.texto-btn {
+  font-size: 2.5rem;
+}

@@ -1,11 +1,22 @@
 
-
+import { Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export default function Informacion() {
+  const navigate = useNavigate();
+
+  const irAPrincipal = () => {
+    navigate("/");
+  }
 
 
   return (
-    <>
+    <div>
+      <Box mt={4} display="flex" position="relative" justifyContent="right">
+        <Button variant="contained" size="large" color="secondary" onClick={irAPrincipal}>
+          <span >VOLVER A LA PANTALLA PRINCIPAL</span>
+        </Button>
+      </Box>
       <h1>Jugadores:</h1>
       El juego permanecerá en espera hasta que se conecten un total de 2 jugadores.
 
@@ -81,8 +92,7 @@ export default function Informacion() {
 
       <h3>Fase de Defensa:</h3>
       En caso de recibir un ataque, permite defenderse con una carta de personaje del tablero del jugador que recibe el ataque.
-
-    </>
+    </div>
   )
 }
 

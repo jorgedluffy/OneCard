@@ -163,10 +163,11 @@ function Juego() {
         <Grid item xs={8} className='texto-centrado'>
           <Grid container>
             <Grid item xs={6}>
-              <h1>Tu tripulación es:  {jugador.tripulacion == TRIPULACIONES.MARINA ? "MARINA" : "MUGIWARA"} </h1>
+              <h2>Tu tripulación es:  {jugador.tripulacion == TRIPULACIONES.MARINA ? "MARINA" : "MUGIWARA"} </h2>
             </Grid>
             <Grid item xs={6}>
-              <h1>{esTurnoActual ? "Es tu turno" : "Turno del contrincante"}: {getFaseActual()} </h1>
+              <h2>{esTurnoActual ? "Es tu turno" : "Turno del enemigo"}: </h2>
+              <h3>{getFaseActual()} </h3>
 
             </Grid>
           </Grid>

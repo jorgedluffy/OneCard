@@ -37,15 +37,6 @@ export default class Jugador {
   setTablero(tablero) {
     this.tablero = tablero;
   }
-  // inicializarDatos() {
-  //   inicializarCartasDesdeBD();
-  //   this.inicializarCartas();
-  // }
-
-
-  // setMana() {
-  //   this.mana = this.campos.length();
-  // }
   getTripulacion() {
     return this.tripulacion;
   }
@@ -94,44 +85,6 @@ export default class Jugador {
 
 
 
-  // jugarCartaAlTablero(carta) {
-  //   //this.mano.remove(carta)
-  //   this.tablero.push(carta);
-  //   console.log(`${this.nombre} juega ${carta.nombre} al tablero.`);
-  // }
-
-  // // Método para añadir una carta a la base de datos
-  // async agregarCartaALaBD(nuevaCarta) {
-  //   try {
-  //     // Asegurarse de que la nueva carta sea una instancia de la clase Carta
-  //     if (!(nuevaCarta instanceof Carta)) {
-  //       throw new Error('El objeto proporcionado no es una instancia de Carta.');
-  //     }
-
-  //     // Guardar la nueva carta en la base de datos
-  //     const cartaGuardada = await CartaController.guardarCarta(nuevaCarta);
-  //     console.log(`Carta ${nuevaCarta.nombre} guardada en la base de datos.`);
-  //     return cartaGuardada;
-  //   } catch (error) {
-  //     console.error('Error al agregar carta a la base de datos:', error);
-  //     throw error;
-  //   }
-  // }
-  // async inicializarCartasDesdeBD() {
-  //   try {
-  //     // Recuperar cartas específicas para el jugador desde la base de datos
-  //     const cartasDesdeBD = await obtenerCartasPorTripulacion(this.tipoTripulacion);
-
-  //     // Asignar las cartas recuperadas al deck del jugador
-  //     this.deck = cartasDesdeBD;
-
-  //     // También puedes realizar operaciones adicionales según sea necesario
-
-  //   } catch (error) {
-  //     console.error('Error al obtener cartas desde la base de datos:', error);
-  //     throw error;
-  //   }
-  // }
   inicializarCartas() {
     // Crear instancias de cartas según el tipo de tripulación
     if (this.tripulacion === TRIPULACIONES.SOMBRERO_PAJA) {

@@ -1,3 +1,8 @@
+body {
+  color: #2554ad;
+
+}
+
 .info-container {
 
   display: flex;
@@ -8,19 +13,21 @@
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  color: #000;
-  border: 3px solid #000;
+  color: #2554ad;
+  border: 3px solid #2554ad;
   text-align: end;
+  background-color: #abdbe3;
 }
 
 .campos-desk-contenido {
   padding: 10px;
   font-size: 22px;
   font-weight: bold;
-  color: #000;
-  border: 3px solid #000;
+  color: #2554ad;
+  border: 3px solid #2554ad;
   text-align: start;
   max-width: 150px;
+  background-color: #abdbe3;
 }
 
 .mt10 {

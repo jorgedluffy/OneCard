@@ -41,13 +41,8 @@ export default class Juego {
   //--- 
 
   // METODOS CONTROL INICIO PARTIDA
-  anyadirJugador(id, nombre) {
-    let tripulacion = TRIPULACIONES.SOMBRERO_PAJA;
-    if (this.jugadoresConectados.length > 0) {
-      const tripulacionContrincante = this.jugadoresConectados[0].getTripulacion();
-      if (tripulacionContrincante === 1) tripulacion = TRIPULACIONES.MARINA
-    }
-    this.jugadoresConectados.push(new Jugador(id, nombre, tripulacion));
+  anyadirJugador(id, nombre, trip) {
+    this.jugadoresConectados.push(new Jugador(id, nombre, trip));
 
     this.enviarJugadores()
   }
