@@ -16,7 +16,8 @@ La configuración indicada a continuación únicamente será necesario realizarl
 - En el menú lateral izquierdo, seleccionar el icono + (más) que se encuentra a la derecha de `Databases`
   ![](./doc/readme/mongodb2.PNG)
 - Rellenar la información de la base de datos con los siguientes datos y hacer click en `Create Database`:
-  > Database Name: oneCard 
+  > Database Name: oneCard
+  
   > Collection Name: cartas
 
   :warning: **NOTA: Importante respetar mayúsculas y minúsculas**
