@@ -184,7 +184,7 @@ export default class Juego {
               return c
           }))
         }
-        else if (cartas.cartaBufo.nombre === "Enma" || cartas.cartaBufo.nombre === Murakumogiri) {
+        else if (cartas.cartaBufo.nombre === "Enma" || cartas.cartaBufo.nombre === "Murakumogiri") {
           this.jugadoresConectados[this.jugadorActual].setTablero(this.jugadoresConectados[this.jugadorActual].tablero.map(c => {
             if (c.id == cartas.carta.id)
 

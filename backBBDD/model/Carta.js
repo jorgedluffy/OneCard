@@ -21,14 +21,5 @@ export default class Carta {
     this.img = img; // nombre de la imagen que pertenece la carta
   }
 
-  mostrarInformacion() {
-    console.log(`Nombre: ${this.nombre}`);
-    console.log(`Tipo: ${this.tipo}`);
-    console.log(`Ataque: ${this.ataque}`);
-    console.log(`Defensa: ${this.defensa}`);
-    console.log(`Energia: ${this.energia}`);
-    console.log(`Habilidad: ${this.habilidad}`);
-    console.log(`Tripulación: ${this.tripulacion}`);
-  }
 
 }
