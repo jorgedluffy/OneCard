@@ -1,6 +1,6 @@
 # One Card
 
-One Card es un juego de cartas, desarrollado en NodeJS y ReactJS, con una base de datos Mongoose, de dos jugadores en línea inspirado en el universo de One Piece, donde dos jugadores compiten utilizando cartas de personajes, campos y cartas mágicas. 
+One Card es un juego de cartas, desarrollado en NodeJS y ReactJS, con una base de datos MongoDB, de dos jugadores en línea inspirado en el universo de One Piece, donde dos jugadores compiten utilizando cartas de personajes, campos y cartas mágicas. 
 Cada jugador elige una tripulación, ya sea Sombrero de Paja o Marina, y luchará con su mazo, el cual incluye personajes icónicos, cartas de campo que incrementan su energía y cartas mágicas con diversas habilidades. 
 El objetivo es reducir los puntos de vida del oponente a cero mediante estrategias de ataque y defensa, utilizando las características y habilidades de cada carta. 
 
