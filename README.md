@@ -21,6 +21,7 @@ La configuración indicada a continuación únicamente será necesario realizarl
   > Collection Name: cartas
 
   :warning: **NOTA: Importante respetar mayúsculas y minúsculas**
+
   ![](./doc/readme/mongodb3.PNG)
 
 - Dentro de la base de datos que acabamos de crear, hacemos click en el desplegable `ADD DATA` y seleccionamos la opción `Import JSON or CSV file`
@@ -33,11 +34,15 @@ La configuración indicada a continuación únicamente será necesario realizarl
   ![](./doc/readme/mongodb6.PNG)
 
 ### Configuración del servidor
+- Descargar e instalar [NodeJS](https://nodejs.org/dist/v20.13.1/node-v20.13.1-x64.msi)
+
 Para un correcto funcionamiento de la aplicación deberán descargarse las dependencias necesarias.
 Para ello, desde la terminal, deberemos acceder al directorio `./backBBDD/` y ejecutar el siguiente comando:
   > `npm install`
 
 ### Configuración del cliente
+:warning: Importante tener instalado NodeJS (enlace en la configuración del servidor)
+
 Para un correcto funcionamiento de la aplicación deberán descargarse las dependencias necesarias.
 Para ello, desde la terminal, deberemos acceder al directorio `./front/` y ejecutar el siguiente comando:
   > `npm install`
@@ -68,7 +73,7 @@ Abriremos dos ventanas/pestañas en nuestro navegador favorito y abriremos la si
 Si el juego se encuentra configurado y arrancado correctamente, deberemos visualizar la pantalla de inicio en cada una de las instancias abiertas:
   ![](./doc/readme/pantalla-inicio.PNG)
 
-NOTA: A partir de ahora nos referiremos a cada pantalla/pestaña abierta como un jugador.
+:warning: NOTA: A partir de ahora nos referiremos a cada pantalla/pestaña abierta como un jugador.
 
 En esta pantalla, cada jugador podrá acceder a una pantalla de información general del juego, con el icono de info que encuentra arriba a la izquierda:
   ![](./doc/readme/info.PNG)
