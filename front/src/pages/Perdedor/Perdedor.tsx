@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { socket } from "../../App";
 import { useEffect } from "react";
+import hasPerdido from '../../assets/HAS-PERDIDO.png';
 
 
 export default function Perdedor() {
@@ -20,8 +21,12 @@ export default function Perdedor() {
 
   return (
     <>
-      <p>HAS PERDIDO</p>
-      <button onClick={reiniciarPartida}>VOLVER A JUGAR</button>
+      <div className="fin-partida" >
+        <img src={hasPerdido} alt="ONE CARD GIF" />
+      </div>
+      <div className="fin-partida" >
+        <button onClick={reiniciarPartida}><h1>VOLVER A JUGAR</h1></button>
+      </div>
     </>
   )
 }

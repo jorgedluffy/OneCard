@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { socket } from "../../App"
 import { useNavigate } from "react-router-dom";
+import hasGanado from '../../assets/HAS-GANADO.png';
 
 
 export default function Ganador() {
@@ -18,8 +19,12 @@ export default function Ganador() {
 
   return (
     <>
-      <p>HAS GANADO</p>
-      <button onClick={reiniciarPartida}>VOLVER A JUGAR</button>
+      <div className="fin-partida" >
+        <img src={hasGanado} alt="ONE CARD GIF" />
+      </div>
+      <div className="fin-partida" >
+        <button onClick={reiniciarPartida}><h1>VOLVER A JUGAR</h1></button>
+      </div>
     </>
   )
 }
