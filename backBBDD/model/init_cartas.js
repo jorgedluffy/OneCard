@@ -1,5 +1,7 @@
-[
+export const cartas = [
+
     {
+        "id": 1,
         "nombre": "Cura Chopper",
         "tipo": "Magica",
         "ataque": 0,
@@ -10,6 +12,7 @@
         "img": "9.png"
     },
     {
+        "id": 2,
         "nombre": "Cura Hiriluk",
         "tipo": "Magica",
         "ataque": 0,
@@ -20,6 +23,7 @@
         "img": "10.png"
     },
     {
+        "id": 3,
         "nombre": "Defensa Franky Shogun",
         "tipo": "Magica",
         "ataque": 0,
@@ -30,6 +34,7 @@
         "img": "11.png"
     },
     {
+        "id": 4,
         "nombre": "Dial de Impacto",
         "tipo": "Magica",
         "ataque": 1,
@@ -40,6 +45,7 @@
         "img": "12.png"
     },
     {
+        "id": 5,
         "nombre": "Dial de Impacto",
         "tipo": "Magica",
         "ataque": 1,
@@ -50,6 +56,7 @@
         "img": "12.png"
     },
     {
+        "id": 6,
         "nombre": "Dial de Impacto",
         "tipo": "Magica",
         "ataque": 1,
@@ -60,6 +67,7 @@
         "img": "12.png"
     },
     {
+        "id": 7,
         "nombre": "Dial de Impacto",
         "tipo": "Magica",
         "ataque": 1,
@@ -70,6 +78,7 @@
         "img": "12.png"
     },
     {
+        "id": 8,
         "nombre": "Dial de Impacto",
         "tipo": "Magica",
         "ataque": 1,
@@ -80,6 +89,7 @@
         "img": "12.png"
     },
     {
+        "id": 9,
         "nombre": "Enma",
         "tipo": "Magica",
         "ataque": 3,
@@ -90,6 +100,7 @@
         "img": "13.png"
     },
     {
+        "id": 10,
         "nombre": "Murakumogiri",
         "tipo": "Magica",
         "ataque": 5,
@@ -100,6 +111,7 @@
         "img": "14.png"
     },
     {
+        "id": 11,
         "nombre": "Monkey D. Luffy",
         "tipo": "Personaje",
         "ataque": 10,
@@ -110,6 +122,7 @@
         "img": "0.png"
     },
     {
+        "id": 12,
         "nombre": "Roronoa Zoro",
         "tipo": "Personaje",
         "ataque": 8,
@@ -120,6 +133,7 @@
         "img": "1.png"
     },
     {
+        "id": 13,
         "nombre": "Vinsmoke Sanji",
         "tipo": "Personaje",
         "ataque": 4,
@@ -130,6 +144,7 @@
         "img": "2.png"
     },
     {
+        "id": 14,
         "nombre": "Nami",
         "tipo": "Personaje",
         "ataque": 2,
@@ -140,6 +155,7 @@
         "img": "3.png"
     },
     {
+        "id": 15,
         "nombre": "Nami",
         "tipo": "Personaje",
         "ataque": 2,
@@ -150,6 +166,7 @@
         "img": "3.png"
     },
     {
+        "id": 16,
         "nombre": "Nami",
         "tipo": "Personaje",
         "ataque": 2,
@@ -160,6 +177,7 @@
         "img": "3.png"
     },
     {
+        "id": 17,
         "nombre": "Nami",
         "tipo": "Personaje",
         "ataque": 2,
@@ -170,6 +188,7 @@
         "img": "3.png"
     },
     {
+        "id": 18,
         "nombre": "Usopp",
         "tipo": "Personaje",
         "ataque": 1,
@@ -180,6 +199,7 @@
         "img": "4.png"
     },
     {
+        "id": 19,
         "nombre": "Usopp",
         "tipo": "Personaje",
         "ataque": 1,
@@ -190,6 +210,7 @@
         "img": "4.png"
     },
     {
+        "id": 20,
         "nombre": "Usopp",
         "tipo": "Personaje",
         "ataque": 1,
@@ -200,6 +221,7 @@
         "img": "4.png"
     },
     {
+        "id": 21,
         "nombre": "Usopp",
         "tipo": "Personaje",
         "ataque": 1,
@@ -210,6 +232,7 @@
         "img": "4.png"
     },
     {
+        "id": 22,
         "nombre": "Usopp",
         "tipo": "Personaje",
         "ataque": 1,
@@ -220,6 +243,7 @@
         "img": "4.png"
     },
     {
+        "id": 23,
         "nombre": "Nico Robin",
         "tipo": "Personaje",
         "ataque": 4,
@@ -230,6 +254,7 @@
         "img": "5.png"
     },
     {
+        "id": 24,
         "nombre": "Tony Tony Chopper",
         "tipo": "Personaje",
         "ataque": 2,
@@ -240,16 +265,51 @@
         "img": "6.png"
     },
     {
+        "id": 25,
+        "nombre": "Tony Tony Chopper",
+        "tipo": "Personaje",
+        "ataque": 2,
+        "defensa": 4,
+        "energia": 2,
+        "habilidad": "Monster Point",
+        "tripulacion": "Sombrero de Paja",
+        "img": "6.png"
+    },
+    {
+        "id": 26,
+        "nombre": "Tony Tony Chopper",
+        "tipo": "Personaje",
+        "ataque": 2,
+        "defensa": 4,
+        "energia": 2,
+        "habilidad": "Monster Point",
+        "tripulacion": "Sombrero de Paja",
+        "img": "6.png"
+    },
+    {
+        "id": 27,
+        "nombre": "Tony Tony Chopper",
+        "tipo": "Personaje",
+        "ataque": 2,
+        "defensa": 4,
+        "energia": 2,
+        "habilidad": "Monster Point",
+        "tripulacion": "Sombrero de Paja",
+        "img": "6.png"
+    },
+    {
+        "id": 28,
         "nombre": "Franky",
         "tipo": "Personaje",
-        "ataque": 5,
-        "defensa": 7,
-        "energia": 4,
-        "habilidad": "Coup de Vent",
+        "ataque": 6,
+        "defensa": 6,
+        "energia": 5,
+        "habilidad": "Franky Radical Beam",
         "tripulacion": "Sombrero de Paja",
         "img": "7.png"
     },
     {
+        "id": 30,
         "nombre": "Campo Mugiwara",
         "tipo": "Campo",
         "ataque": 0,
@@ -260,6 +320,7 @@
         "img": "8.png"
     },
     {
+        "id": 31,
         "nombre": "Campo Mugiwara",
         "tipo": "Campo",
         "ataque": 0,
@@ -270,6 +331,7 @@
         "img": "8.png"
     },
     {
+        "id": 32,
         "nombre": "Campo Mugiwara",
         "tipo": "Campo",
         "ataque": 0,
@@ -280,6 +342,7 @@
         "img": "8.png"
     },
     {
+        "id": 33,
         "nombre": "Campo Mugiwara",
         "tipo": "Campo",
         "ataque": 0,
@@ -290,6 +353,7 @@
         "img": "8.png"
     },
     {
+        "id": 34,
         "nombre": "Campo Mugiwara",
         "tipo": "Campo",
         "ataque": 0,
@@ -300,6 +364,7 @@
         "img": "8.png"
     },
     {
+        "id": 35,
         "nombre": "Campo Mugiwara",
         "tipo": "Campo",
         "ataque": 0,
@@ -310,6 +375,7 @@
         "img": "8.png"
     },
     {
+        "id": 36,
         "nombre": "Campo Mugiwara",
         "tipo": "Campo",
         "ataque": 0,
@@ -320,6 +386,7 @@
         "img": "8.png"
     },
     {
+        "id": 37,
         "nombre": "Campo Mugiwara",
         "tipo": "Campo",
         "ataque": 0,
@@ -330,6 +397,7 @@
         "img": "8.png"
     },
     {
+        "id": 38,
         "nombre": "Campo Mugiwara",
         "tipo": "Campo",
         "ataque": 0,
@@ -340,6 +408,18 @@
         "img": "8.png"
     },
     {
+        "id": 39,
+        "nombre": "Campo Mugiwara",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidad": "Aumenta la energía de los Sombrero de Paja en 1",
+        "tripulacion": "Sombrero de Paja",
+        "img": "8.png"
+    },
+    {
+        "id": 40,
         "nombre": "Almirante Akainu",
         "tipo": "Personaje",
         "ataque": 8,
@@ -350,6 +430,7 @@
         "img": "15.png"
     },
     {
+        "id": 41,
         "nombre": "Almirante Kizaru",
         "tipo": "Personaje",
         "ataque": 7,
@@ -360,6 +441,7 @@
         "img": "16.png"
     },
     {
+        "id": 42,
         "nombre": "Smoker",
         "tipo": "Personaje",
         "ataque": 5,
@@ -370,6 +452,7 @@
         "img": "17.png"
     },
     {
+        "id": 43,
         "nombre": "Almirante Kuzan",
         "tipo": "Personaje",
         "ataque": 7,
@@ -380,6 +463,7 @@
         "img": "18.png"
     },
     {
+        "id": 44,
         "nombre": "Almirante Fujitora",
         "tipo": "Personaje",
         "ataque": 8,
@@ -388,8 +472,8 @@
         "habilidad": "Zushi Zushi no Mi",
         "tripulacion": "Marina",
         "img": "19.png"
-    },
-    {
+    }, {
+        "id": 46,
         "nombre": "Donquixote Doflamingo",
         "tipo": "Personaje",
         "ataque": 6,
@@ -400,6 +484,7 @@
         "img": "20.png"
     },
     {
+        "id": 47,
         "nombre": "Tashigi",
         "tipo": "Personaje",
         "ataque": 1,
@@ -410,6 +495,7 @@
         "img": "21.png"
     },
     {
+        "id": 48,
         "nombre": "Tashigi",
         "tipo": "Personaje",
         "ataque": 1,
@@ -420,6 +506,7 @@
         "img": "21.png"
     },
     {
+        "id": 49,
         "nombre": "Tashigi",
         "tipo": "Personaje",
         "ataque": 1,
@@ -430,6 +517,7 @@
         "img": "21.png"
     },
     {
+        "id": 50,
         "nombre": "Tashigi",
         "tipo": "Personaje",
         "ataque": 1,
@@ -440,6 +528,7 @@
         "img": "21.png"
     },
     {
+        "id": 51,
         "nombre": "Tashigi",
         "tipo": "Personaje",
         "ataque": 1,
@@ -450,6 +539,7 @@
         "img": "21.png"
     },
     {
+        "id": 52,
         "nombre": "Almirante Garp",
         "tipo": "Personaje",
         "ataque": 3,
@@ -460,6 +550,7 @@
         "img": "22.png"
     },
     {
+        "id": 53,
         "nombre": "Almirante Garp",
         "tipo": "Personaje",
         "ataque": 3,
@@ -470,6 +561,7 @@
         "img": "22.png"
     },
     {
+        "id": 54,
         "nombre": "Almirante Garp",
         "tipo": "Personaje",
         "ataque": 3,
@@ -480,6 +572,7 @@
         "img": "22.png"
     },
     {
+        "id": 55,
         "nombre": "Almirante Garp",
         "tipo": "Personaje",
         "ataque": 3,
@@ -490,6 +583,7 @@
         "img": "22.png"
     },
     {
+        "id": 56,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -500,6 +594,7 @@
         "img": "23.png"
     },
     {
+        "id": 57,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -510,6 +605,7 @@
         "img": "23.png"
     },
     {
+        "id": 58,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -520,6 +616,7 @@
         "img": "23.png"
     },
     {
+        "id": 59,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -530,6 +627,7 @@
         "img": "23.png"
     },
     {
+        "id": 60,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -540,6 +638,7 @@
         "img": "23.png"
     },
     {
+        "id": 61,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -550,6 +649,7 @@
         "img": "23.png"
     },
     {
+        "id": 62,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -560,6 +660,7 @@
         "img": "23.png"
     },
     {
+        "id": 63,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -570,6 +671,7 @@
         "img": "23.png"
     },
     {
+        "id": 64,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -580,6 +682,7 @@
         "img": "23.png"
     },
     {
+        "id": 65,
         "nombre": "Campo Marina",
         "tipo": "Campo",
         "ataque": 0,
@@ -588,5 +691,16 @@
         "habilidad": "Aumenta la energía de los personajes de la Marina en 1",
         "tripulacion": "Marina",
         "img": "23.png"
-    }
+    },
+    {
+        "id": 66,
+        "nombre": "Campo Marina",
+        "tipo": "Campo",
+        "ataque": 0,
+        "defensa": 0,
+        "energia": 0,
+        "habilidad": "Aumenta la energía de los personajes de la Marina en 1",
+        "tripulacion": "Marina",
+        "img": "23.png"
+    },
 ]

@@ -9,11 +9,14 @@ export default class Juego {
   cartaSeleccionada;
   io;
   socket;
+  isConnectedToBbdd = false;
 
-  constructor() {
+  constructor(isConnectedToBbdd) {
+    console.log("Estado bbdd: ", isConnectedToBbdd)
     this.partidaIniciada = false;
     this.jugadoresConectados = [];
     this.jugadorActual = 0;
+    this.isConnectedToBbdd = isConnectedToBbdd
   }
 
   // GETTERS Y SETTERS
@@ -60,11 +63,19 @@ export default class Juego {
     this.io.emit('partidaIniciada', { mensaje: '¡La partida ha comenzado!' });
 
     // Esperar a que todos los jugadores inicialicen sus cartas
-    await Promise.all(this.jugadoresConectados.map(async (jugador) => {
-      await jugador.inicializarCartas();
-      jugador.barajarCartas();
-      jugador.robarCartasIniciales();
-    }));
+    if (this.isConnectedToBbdd) {
+      await Promise.all(this.jugadoresConectados.map(async (jugador) => {
+        await jugador.inicializarCartas();
+        jugador.barajarCartas();
+        jugador.robarCartasIniciales();
+      }));
+    } else {
+      this.jugadoresConectados.map((jugador) => {
+        jugador.inicializarCartasEstaticas();
+        jugador.barajarCartas();
+        jugador.robarCartasIniciales();
+      })
+    }
 
     if (this.io) {
       this.io.emit('fasesIniciadas', { mensaje: '¡Las fases han comenzado!' });

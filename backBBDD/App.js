@@ -12,14 +12,17 @@ const PORT = 3000;
 
 // Configuración de Mongoose
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://localhost:27017/oneCard', { useNewUrlParser: true, useUnifiedTopology: true })
+await mongoose.connect('mongodb://localhost:27017/oneCard', {
+    useNewUrlParser: true, useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000
+})
     .then(() => console.log('Connected to MongoDB'))
     .catch((error) => console.error('Could not connect to MongoDB:', error));
 
 // Configuración de Express
 app.use(express.json());
 
-const juego = new Juego();
+const juego = new Juego(mongoose.connection.readyState === 1);
 
 // Configuración de Socket.io
 io.on('connection', (socket) => {
@@ -58,7 +61,7 @@ const cartaSchema = new mongoose.Schema({
     ataque: Number,
     defensa: Number,
     energia: Number,
-    habilidadEspecial: String,
+    habilidad: String,
     tripulacion: String,
 });
 

@@ -1,0 +1,27 @@
+services:
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: front
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - one-piece-network
+
+  back:
+    build:
+      context: ./backBBDD
+      dockerfile: Dockerfile
+    container_name: back
+    ports:
+      - "3000:3000"
+    networks:
+      - one-piece-network
+
+networks:
+  one-piece-network:
+
+

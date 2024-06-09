@@ -13,6 +13,7 @@ export default function Temp() {
     energia: 3,
     habilidad: "Gomu Gomu no Pistol",
     tripulacion: "Sombrero de Paja",
+    img: '1'
   }
   return (
     <>

@@ -40,7 +40,7 @@ export default function GameCard(props: ICardProps) {
             component="img"
             alt={props.nombre}
             height={estaSeleccionado ? "140" : '120'}
-            image={`./src/assets/cards/${props.img}`}
+            image={process.env.NODE_ENV === 'production' ? `./assets/cards/${props.img}` : `./src/assets/cards/${props.img}`}
           />
           {estaSeleccionado && (
             <>

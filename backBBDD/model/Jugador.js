@@ -1,5 +1,7 @@
 import Carta from './Carta.js';
 import { TRIPULACIONES, CARTAS_INICIALES, FASES, TIPO_CARTA } from './constants.js';
+import { cartas } from './init_cartas.js';
+
 
 export default class Jugador {
   id;
@@ -85,11 +87,19 @@ export default class Jugador {
   }
 
   async inicializarCartas() {
+    console.log("Inicializamos cartas de bbdd")
     if (this.tripulacion === TRIPULACIONES.SOMBRERO_PAJA) {
       await this.inicializarCartasSombreroDePaja();
     } else if (this.tripulacion === TRIPULACIONES.MARINA) {
       await this.inicializarCartasMarina();
     }
+  }
+
+  inicializarCartasEstaticas() {
+    console.log("Inicializamos cartas estaticas")
+    this.deck = cartas.filter(c => this.tripulacion === TRIPULACIONES.SOMBRERO_PAJA ? c.tripulacion === "Sombrero de Paja" : c.tripulacion === "Marina")
+    const cartasMagicas = cartas.filter(c => c.tripulacion === "")
+    this.deck = [...this.deck, ...cartasMagicas];
   }
 
   async meterCartasMagicas() {
@@ -175,7 +185,8 @@ async function getCartasTripulacion(trip) {
     ));
   } catch (error) {
     console.error('There has been a problem with your fetch operation:', error);
-    return [];
+
+    return []
   }
 }
 
@@ -206,6 +217,7 @@ async function getCartasMagicas() {
     ));
   } catch (error) {
     console.error('There has been a problem with your fetch operation:', error);
-    return [];
+
+    return []
   }
 }
