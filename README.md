@@ -4,6 +4,16 @@ One Card es un juego de cartas, desarrollado en NodeJS y ReactJS, con una base d
 Cada jugador elige una tripulación, ya sea Sombrero de Paja o Marina, y luchará con su mazo, el cual incluye personajes icónicos, cartas de campo que incrementan su energía y cartas mágicas con diversas habilidades. 
 El objetivo es reducir los puntos de vida del oponente a cero mediante estrategias de ataque y defensa, utilizando las características y habilidades de cada carta. 
 
+## Despliegue del proyecto con Docker
+
+Se ha facilitado una configuración de contenedores de Docker de manera que se pueda desplegar la aplicación haciendo uso de un único comando.
+Esta versión desplegada no incluye la configuración de BBDD, por lo que no podrá ser posible acceder a los endpoints proporcionados para el mantenimiento de las cartas. Además, las cartas cargadas serán las que se han predefinido en el archivo ./backBBDD/model/init_cartas.js
+
+  :warning: **NOTA: Importante tener descargado e instalado Docker**
+
+Para arrancar la creación y despliegue de los contenedores Docker deberemos lanzar el siguiente comando desde la raiz del proyecto:
+  > docker-compose up --build
+
 ## Configuración del proyecto
 
 La configuración indicada a continuación únicamente será necesario realizarla una vez.
