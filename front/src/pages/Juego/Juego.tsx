@@ -14,6 +14,7 @@ function Juego() {
   const [jugador, setJugador] = useState({} as any)
   const [jugadorEnemigo, setJugadorEnemigo] = useState({} as any)
   const [cartaBufo, setCartaBufo] = useState({} as any)
+  const [esperandoJugador, setEsperandoJugador] = useState(true)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +26,7 @@ function Juego() {
     })
     socket.on('partidaIniciada', mensaje => {
       console.log(mensaje)
+      setEsperandoJugador(false)
     })
     socket.on('partidaReiniciada', mensaje => {
       console.log(mensaje)
@@ -146,6 +148,16 @@ function Juego() {
     if (jugador.faseActual === FASES.HABILIDAD_MAGICA) return <>Habilidad mágica</>
     return <></>
 
+  }
+
+  if (esperandoJugador) {
+    return (
+      <div className="esperando-contenedor">
+        <div className="esperando-spinner"></div>
+        <h2>Esperando a tu rival...</h2>
+        <p>La partida comenzará cuando se conecte el segundo jugador</p>
+      </div>
+    )
   }
 
   return (
