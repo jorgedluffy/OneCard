@@ -1,18 +1,24 @@
+import 'dotenv/config';
 import express from 'express';
 import http from 'http';
+import cors from 'cors';
 import Juego from './model/Juego.js';
 import { Server as SocketServer } from 'socket.io';
 import mongoose from 'mongoose';
 
 const app = express();
 const server = http.createServer(app);
-const io = new SocketServer(server);
+const io = new SocketServer(server, {
+    cors: { origin: process.env.FRONTEND_URL || '*' }
+});
 
-const PORT = 3000;
+app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
+
+const PORT = process.env.PORT || 3000;
 
 // Configuración de Mongoose
 mongoose.set('strictQuery', true);
-await mongoose.connect('mongodb://localhost:27017/oneCard', {
+await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/oneCard', {
     useNewUrlParser: true, useUnifiedTopology: true,
     serverSelectionTimeoutMS: 5000
 })
@@ -121,10 +127,6 @@ app.delete('/cartas/:id', async (req, res) => {
     } catch (error) {
         res.json({ ok: false, error: 'Error deleting carta' });
     }
-});
-
-app.listen(8080, () => {
-    console.log('Server running on port 8080');
 });
 
 server.listen(PORT, () => {

@@ -13,7 +13,7 @@ import Principal from './pages/Principal/Principal'
 import Juego from './pages/Juego/Juego'
 import Layout from './pages/Layout/Layout'
 
-export const socket = io("/")
+export const socket = io(import.meta.env.VITE_SOCKET_URL || "/")
 
 export default function App() {
   return (
